@@ -1,14 +1,35 @@
-const http = require('http');
+var express = require('express');
+var express_graphql = require('express-graphql');
+var { buildSchema } = require('graphql');
+// GraphQL schema
+var schema = buildSchema(`
+    type Query {
+        course(id: Int!): Course
+        courses(topic: String): [Course]
+    },
+    type Mutation {
+        updateCourseTopic(id: Int!, topic: String!): Course
+    }
+    type Course {
+        id: Int
+        title: String
+        author: String
+        description: String
+        topic: String
+        url: String
+    }
+`);
+// Root resolver
+var root = {
+        message: () => 'Hello World!'
+};
 
-const hostname = '127.0.0.1';
-const port = 3000;
+// Create an express server and a GraphQL endpoint
+var app = express();
+app.use('/graphql', express_graphql({
+    schema: schema,
+    rootValue: root,
+    graphiql: true
+}));
 
-const server = http.createServer((req, res) => {
-    res.statusCode = 200;
-res.setHeader('Content-Type', 'text/plain');
-res.end('Hello World\n');
-});
-
-server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
-});
+app.listen(3001, () => console.log('Express GraphQL Server Now Running On localhost:3001/graphql'));
