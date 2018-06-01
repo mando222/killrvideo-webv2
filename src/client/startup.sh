@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 
-node server.js
+#dev
+./node_modules/.bin/webpack -d --watch
+
+#prod
+#npx webpack
