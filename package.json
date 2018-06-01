@@ -1,0 +1,34 @@
+{
+  "name": "killrvideo-webv2",
+  "version": "1.0.0",
+  "description": "Killer video web client",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mando222/killrvideo-webv2.git"
+  },
+  "author": "Eric Zietlow",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mando222/killrvideo-webv2/issues"
+  },
+  "homepage": "https://github.com/mando222/killrvideo-webv2#readme",
+  "dependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "express-graphql": "^0.6.12",
+    "graphql": "^0.13.2",
+    "lodash": "^4.17.10",
+    "node": "^10.3.0",
+    "react": "^16.4.0",
+    "react-redux": "^5.0.7",
+    "react-tap-event-plugin": "^3.0.3",
+    "redux-thunk": "^2.3.0",
+    "webpack": "^4.10.2",
+    "webpack-cli": "^2.1.5"
+  }
+}
