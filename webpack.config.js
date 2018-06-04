@@ -2,10 +2,19 @@ var webpack = require('webpack');
 var path = require('path');
 
 var prod = {
-    entry: "src/client/src/index.jsx",
-    output: {
-        path: "src/client/src",
-        filename: "killrvideo-client.js"
+        entry: path.resolve(__dirname, 'src/client') + "/index.jsx",
+        output: {
+            path: path.resolve(__dirname, 'src/client/public'),
+            filename: "killrvideo-client.js"
+    },
+    module : {
+        rules : [
+            {
+                test : /\.jsx?/,
+                include : path.resolve(__dirname, 'src/client'),
+                loader : 'babel-loader'
+            }
+        ]
     }
 };
 

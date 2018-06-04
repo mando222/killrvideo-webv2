@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 
-node server.js
+# start the server
+node ./src/server/server.js
+
+# start the client (config from webpack.config.js)
+# npx webpack
