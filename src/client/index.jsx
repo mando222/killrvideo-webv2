@@ -4,9 +4,8 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import killrVideo from './reducers'
 import RootContainer from './components/Root'
-import thunkMiddleware from 'redux-thunk'
-
-import injectTapEventPlugin from 'react-tap-event-plugin';
+import ReduxThunk from 'redux-thunk'
+injectTapEventPlugin = require("react-tap-event-plugin");
 injectTapEventPlugin();
 
 var initialState = {
@@ -21,7 +20,7 @@ let store = createStore(
     killrVideo,
     initialState,
     applyMiddleware(
-        thunkMiddleware,
+        ReduxThunk,
     ))
 
 
