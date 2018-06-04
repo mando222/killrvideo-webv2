@@ -4,4 +4,6 @@
 node ./src/server/server.js
 
 # start the client (config from webpack.config.js)
-# npx webpack
+npm run dev-watch
+npm run start-dev
+

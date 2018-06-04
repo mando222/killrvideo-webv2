@@ -5,7 +5,7 @@ import { createStore, applyMiddleware } from 'redux'
 import killrVideo from './reducers'
 import RootContainer from './components/Root'
 import ReduxThunk from 'redux-thunk'
-injectTapEventPlugin = require("react-tap-event-plugin");
+import injectTapEventPlugin from 'react-tap-event-plugin'
 injectTapEventPlugin();
 
 var initialState = {

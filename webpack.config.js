@@ -15,6 +15,11 @@ var prod = {
                 loader : 'babel-loader'
             }
         ]
+    },
+    devServer: {
+        contentBase: path.resolve(__dirname, "src/client/public"),
+        compress: true,
+        port: 8080
     }
 };
 
