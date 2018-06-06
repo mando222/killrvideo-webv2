@@ -1,26 +1,18 @@
-var express = require('express');
-var graphqlHTTP = require('express-graphql');
-var { buildSchema } = require('graphql');
+const express = require('express');
+const graphqlHTTP = require('express-graphql');
+const schema = require('./schema')
 
-// Construct a schema, using GraphQL schema language
-var schema = buildSchema(`
-  type Query {
-    hello: String
-  }
-`);
+//Set app variable
+const app = express();
 
-// The root provides a resolver function for each API endpoint
-var root = {
-        hello: () => {
-            return 'Hello world!';
-        },
-};
-
-var app = express();
+//setup endpoints and params
 app.use('/graphql', graphqlHTTP({
     schema: schema,
-    rootValue: root,
     graphiql: true,
 }));
-app.listen(4000);
-console.log('Running a GraphQL API server at localhost:4000/graphql');
+
+//start server on port 4000 and display start msg in console
+app.listen(4000, () => {
+    console.log('Running a GraphQL API server at localhost:4000/graphql')
+    }
+);
