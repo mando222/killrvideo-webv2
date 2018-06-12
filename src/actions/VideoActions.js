@@ -2,3 +2,6 @@ import {ADD_COMMENT,ADD_COMMENT_RESET,ADD_ANOTHER_COMMENT,GET_VIDEO,RECORD_PLAYB
 } from "../consts"
 
 
+export function addComment(videoId, comment) {
+
+}
