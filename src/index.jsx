@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import killrVideo from './reducers'
-import RootContainer from './components/Root'
+import Root from './components/Root'
 import ReduxThunk from 'redux-thunk'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 injectTapEventPlugin();
@@ -26,7 +26,7 @@ let store = createStore(
 
 render(
     <Provider store={store}>
-            <RootContainer />
+            <Root/>
     </Provider>,
     document.getElementById('root')
 )
