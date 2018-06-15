@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import { validateForm } from 'lib/validation';
+import { validateForm } from '../../lib/validation';
 
-import Icon from 'components/shared/icon';
+import Icon from '../shared/icon';
 
-class SearchBox extends Component {
+class SearchBox extends React.Component {
   handleChange(e) {
     // Let form track the changes to the input then get suggestions
     this.props.fields.query.onChange(e);

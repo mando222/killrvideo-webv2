@@ -4,23 +4,24 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 
-import { toggleWhatIsThis } from 'actions';
-import { toggleTour } from 'actions';
-import { getCurrentUser } from 'actions/authentication';
-import { getSuggestions } from 'actions/search';
-import Icon from 'components/shared/icon';
-import UserProfileImage from 'components/users/user-profile-image';
+// import { toggleWhatIsThis } from 'actions';
+// import { toggleTour } from 'actions';
+// import { getCurrentUser } from '../../actions/authentication';
+// import { getSuggestions } from 'actions/search';
+import Icon from '../shared/icon';
+import UserProfileImage from '../users/user-profile-image';
 import WhatIsThis from './what-is-this';
 import SearchBox from './search-box';
-import Tour from 'components/shared/tour';
-import { logout } from 'actions/authentication';
+import Tour from '../shared/tour';
+// import { logout } from '../../actions/authentication';
 
 
-var logoUrl = require('killrvideo.png');
+var logoUrl = '../../images/killrvideo.png'
 
-class Header extends Component {
+class Header extends React.Component {
   componentDidMount() {
-    this.props.getCurrentUser(Header.queries.currentUser());
+      //get current user here
+    // this.props.getCurrentUser(Header.queries.currentUser());
   }
     
   submitSearch(q) {
@@ -97,7 +98,7 @@ class Header extends Component {
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
-            <SearchBox onSubmit={vals => this.submitSearch(vals.query)} getSuggestions={this.props.getSuggestions} />
+              <SearchBox onSubmit={vals => this.submitSearch(vals.query)} getSuggestions={this.props.getSuggestions} />
             <Nav navbar pullRight> 
               <NavItem id="show-tour" eventKey={1} href="#" onSelect={e => this.startTour(this.props.currentUser.isLoggedIn)} >
                 <Icon name="map-signs" fixedWidth /> Tour: <span>{this.props.showTour ? 'On' : 'Off'}</span>
@@ -163,10 +164,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             dispatch(toggleTour())
         },
         getCurrentUser: () => {
-            dispatch(getCurrentUser())
+            // dispatch(getCurrentUser())
         },
         getSuggestions: () => {
-            dispatch(getSuggestions())
+            // dispatch(getSuggestions())
         },
     }
 }

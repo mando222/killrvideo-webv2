@@ -6,7 +6,7 @@ import { Row } from 'react-bootstrap';
 import * as HomeActions from 'actions/home';
 import * as AuthActions from 'actions/authentication';
 
-import VideoPreviewList from 'components/videos/video-preview-list';
+import VideoPreviewList from '../videos/video-preview-list';
 
 class Home extends Component {
   componentDidMount() {

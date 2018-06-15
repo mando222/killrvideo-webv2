@@ -1,5 +1,5 @@
-import React from 'react'
-import Layout from './layout/index';
+import React from 'react';
+import Layout from './layout';
 
 class Root extends React.Component{
     render() {

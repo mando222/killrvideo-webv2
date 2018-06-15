@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button, Collapse } from 'react-bootstrap';
-import Icon from 'components/shared/icon';
+import Icon from '../shared/icon';
 
-class WhatIsThis extends Component {
+class WhatIsThis extends React.Component {
   render() {
     return (
       <Collapse in={this.props.showWhatIsThis}>

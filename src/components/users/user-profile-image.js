@@ -4,7 +4,7 @@ import md5 from 'md5';
 import classNames from 'classnames';
 
 // Show an image for a user profile
-class UserProfileImage extends Component {
+class UserProfileImage extends React.Component {
   render() {
     const hash = md5(this.props.email);
     const imageUrl = `https://robohash.org/${hash}?gravatar=hashed&set=any&bgset=any`;

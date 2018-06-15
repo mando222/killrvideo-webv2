@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 
 // Component for the site's footer
-class Footer extends Component {
+class Footer extends React.Component {
   render() {
     let sampleData;
     if (this.props.dev) {

@@ -1,23 +1,29 @@
 var webpack = require('webpack');
 var path = require('path');
 
+
+var SOURCE_DIR = path.resolve(__dirname, 'src');
+
+var BUILD_DIR  = path.resolve(__dirname, 'src/public');
+
+
 var prod = {
-    entry: path.resolve(__dirname, 'src') + "/index.jsx",
+    entry: SOURCE_DIR + "/index.jsx",
     output: {
-        path: path.resolve(__dirname, 'src/public'),
+        path: BUILD_DIR,
         filename: "killrvideo-client.js"
     },
     module : {
         rules : [
             {
                 test : /\.jsx?/,
-                include : path.resolve(__dirname, 'src'),
+                include : SOURCE_DIR,
                 loader : 'babel-loader',
             },
         ]
     },
     devServer: {
-        contentBase: path.resolve(__dirname, "src/public"),
+        contentBase: BUILD_DIR,
         compress: true,
         port: 8080
     }

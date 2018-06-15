@@ -5,7 +5,7 @@ import Joyride from 'react-joyride';
 import { connect } from 'react-redux';
 import { routeActions } from 'react-router-redux';
 
-class Tour extends Component {
+class Tour extends React.Component {
 
   constructor(props) {
     super(props);
