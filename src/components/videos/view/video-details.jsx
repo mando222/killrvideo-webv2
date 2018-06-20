@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { Row, Col, ButtonToolbar } from 'react-bootstrap';
 import GeminiScrollbar from 'react-gemini-scrollbar';
 import moment from 'moment';
@@ -11,7 +11,7 @@ import VideoTagLink from './video-tag-link';
 import VideoDescription from './video-description';
 import VideoComments from './video-comments';
 
-class VideoDetails extends Component {
+class VideoDetails extends React.Component {
   render() {
     const {
       details: { isLoading, video },
@@ -97,22 +97,6 @@ VideoDetails.queries = {
   currentUser() {
     return VideoComments.queries.currentUser();
   }
-};
-
-// Prop validation
-VideoDetails.propTypes = {
-  details: PropTypes.object.isRequired,
-  comments: PropTypes.object.isRequired,
-  addedComments: PropTypes.object.isRequired,
-  ratingEnabled: PropTypes.bool.isRequired,
-  currentUserRating: PropTypes.number.isRequired,
-  currentUser: PropTypes.object.isRequired,
-  chatEnabled: PropTypes.bool.isRequired,
-  
-  // Actions
-  showMoreComments: PropTypes.func.isRequired,
-  rateVideo: PropTypes.func.isRequired,
-  push: PropTypes.func.isRequired
 };
 
 export default VideoDetails;

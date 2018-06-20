@@ -6,12 +6,12 @@ var SOURCE_DIR = path.resolve(__dirname, 'src');
 
 var BUILD_DIR  = path.resolve(__dirname, 'src/public');
 
-
-var prod = {
+module.exports = {
+    devtool: 'eval-source-map',
     entry: SOURCE_DIR + "/index.jsx",
     output: {
         path: BUILD_DIR,
-        filename: "killrvideo-client.js"
+        filename: "killrvideo-client.js",
     },
     module : {
         rules : [
@@ -26,8 +26,8 @@ var prod = {
         contentBase: BUILD_DIR,
         compress: true,
         port: 8080
-    }
+    },
 };
-
-module.exports = [prod];
+//
+// module.exports = [prod];
 

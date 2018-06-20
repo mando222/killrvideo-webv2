@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import HeaderContainer from './header';
+import Header from './header';
 import Footer from './footer';
 import classNames from 'classnames';
 
@@ -11,20 +10,15 @@ class Layout extends React.Component {
 
     return (
       <div>
-        <HeaderContainer />
-        <div id="body-wrapper" className={wrapperClass}>
-          {this.props.children}
-          <div id="push-footer" className="hidden-xs"></div>
-        </div>
+        {/*<Header />*/}
+        {/*<div id="body-wrapper" className={wrapperClass}>*/}
+          {/*{this.props.children}*/}
+          {/*<div id="push-footer" className="hidden-xs"></div>*/}
+        {/*</div>*/}
         <Footer className="hidden-xs" />
       </div>
     );
   }
 }
-
-// Prop validation
-Layout.propTypes = {
-  routes: PropTypes.arrayOf(PropTypes.object).isRequired
-};
 
 export default Layout;

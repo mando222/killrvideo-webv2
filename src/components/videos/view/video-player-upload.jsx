@@ -1,7 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import VideoUploadStatus from './video-upload-status';
 
-class VideoPlayerUpload extends Component {
+class VideoPlayerUpload extends React.Component {
   constructor(props) {
     super(props);
     
@@ -50,12 +50,6 @@ VideoPlayerUpload.queries = {
       [ [ 'videoId', 'location', 'previewImageLocation' ] ]
     ];
   }
-};
-
-// Prop validation
-VideoPlayerUpload.propTypes = {
-  video: PropTypes.object.isRequired,
-  onPlaybackStarted: PropTypes.func.isRequired
 };
 
 export default VideoPlayerUpload;

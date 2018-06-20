@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+
+import React from 'react';
 import { Row, Col, Table, Button } from 'react-bootstrap';
 import moment from 'moment';
 import { range } from 'lodash';
@@ -8,7 +9,7 @@ import LoadingSpinner from 'components/shared/loading-spinner';
 import ViewVideoLink from 'components/videos/view-video-link';
 import Icon from 'components/shared/icon';
 
-class UserVideos extends Component {
+class UserVideos extends React.Component {
   render() {
     const { isLoading, data, moreDataOnServer, currentPageIndex, pagingConfig, nextPageDisabled, previousPageDisabled } = this.props.videos;
     
@@ -60,18 +61,13 @@ class UserVideos extends Component {
   }
 }
 
-UserVideos.propTypes = {
-  videos: PropTypes.object.isRequired,
-  nextPage: PropTypes.func.isRequired,
-  previousPage: PropTypes.func.isRequired
-};
 
 UserVideos.queries = {
-  videos() {
-    return [
-      [ [ 'videoId', 'name', 'addedDate' ] ]
-    ];
-  }
+  // videos() {
+  //   return [
+  //     [ [ 'videoId', 'name', 'addedDate' ] ]
+  //   ];
+  // }
 };
 
 export default UserVideos;

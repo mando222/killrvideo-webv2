@@ -1,7 +1,6 @@
 import moment from 'moment';
 import { transform, debounce } from 'lodash';
-
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import GeminiScrollbar from 'react-gemini-scrollbar';
 import UserProfileImage from 'components/users/user-profile-image';
 import LoadingSpinner from 'components/shared/loading-spinner';
@@ -44,7 +43,7 @@ function renderMessage(output, message, index, allMessages) {
   );
 }
 
-class ChatMessagesList extends Component {
+class ChatMessagesList extends React.Component {
   constructor(props) {
     super(props);
     
@@ -131,13 +130,6 @@ ChatMessagesList.queries = {
       [ [ 'messageId', 'message', 'addedDate' ] ]
     ];
   }
-};
-
-// Prop validation
-ChatMessagesList.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
-  messages: PropTypes.arrayOf(PropTypes.object).isRequired,
-  getMessages: PropTypes.func.isRequired
 };
 
 export default ChatMessagesList;

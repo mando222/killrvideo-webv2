@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 
 // Component for the site's footer
@@ -27,10 +26,5 @@ class Footer extends React.Component {
     );
   }
 }
-
-Footer.propTypes = {
-  dev: PropTypes.bool,
-  className: PropTypes.string
-};
 
 export default Footer;

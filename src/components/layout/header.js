@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
@@ -18,17 +17,17 @@ import Tour from '../shared/tour';
 
 var logoUrl = '../../images/killrvideo.png'
 
-class Header extends React.Component {
+class HeaderContainer extends React.Component {
   componentDidMount() {
       //get current user here
     // this.props.getCurrentUser(Header.queries.currentUser());
   }
     
   submitSearch(q) {
-    this.props.push({
-      pathname: '/search/results', 
-      query: { q }
-    });
+    // this.props.push({
+    //   pathname: '/search/results',
+    //   query: { q }
+    // });
   }
     
   startTour(logout) {
@@ -122,29 +121,6 @@ class Header extends React.Component {
   }
 }
 
-// Prop validation
-Header.propTypes = {
-  // Mapped from state
-  currentUser: PropTypes.object.isRequired,
-  showWhatIsThis: PropTypes.bool.isRequired,
-  showTour: PropTypes.bool.isRequired,
-  // Actions
-  toggleWhatIsThis: PropTypes.func.isRequired,
-  toggleTour: PropTypes.func.isRequired, 
-  getCurrentUser: PropTypes.func.isRequired,
-  push: PropTypes.func.isRequired,
-  getSuggestions: PropTypes.func.isRequired
-};
-
-// Falcor queries
-Header.queries = {
-  currentUser() {
-    return [
-      [ [ 'firstName', 'lastName', 'email' ] ]
-    ];
-  }
-};
-
 function mapStateToProps(state) {
   const { authentication: { currentUser }, whatIsThis, tour, search } = state;
   return {
@@ -172,10 +148,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     }
 }
 
-const HeaderContainer = connect(
+const Header = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Header)
+)(HeaderContainer)
 
-export default HeaderContainer
+export default Header
 

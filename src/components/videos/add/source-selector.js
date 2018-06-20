@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+
+import React from 'react';
 import { connect } from 'react-redux';
 import { Dropdown, MenuItem } from 'react-bootstrap';
 import { isUndefined, isNumber, find } from 'lodash';
@@ -15,7 +16,7 @@ const sources = [
 ];
 
 // Component for selecting the source for a new video
-class VideoSourceSelector extends Component {
+class VideoSourceSelector extends React.Component {
   constructor(props) {
     super(props);
     
@@ -101,14 +102,6 @@ class VideoSourceSelector extends Component {
     );
   }
 }
-
-// Prop validation
-VideoSourceSelector.propTypes = {
-  value: PropTypes.number,
-  onChange: PropTypes.func,
-  onFocus: PropTypes.func,
-  onBlur: PropTypes.func
-};
 
 // Map redux state to component props
 function mapStateToProps(state) {

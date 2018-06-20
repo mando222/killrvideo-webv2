@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+
+import React from 'react';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 
@@ -9,7 +10,7 @@ import Input from 'components/shared/input';
 import Icon from 'components/shared/icon';
 
 // Inputs needed for adding a YouTube video
-class AddYouTubeVideo extends Component {
+class AddYouTubeVideo extends React.Component {
   clearYouTubeVideo() {
     // Dispatch the action and clear the form
     this.props.clearYouTubeVideoSelection();
@@ -55,17 +56,6 @@ class AddYouTubeVideo extends Component {
     );
   }
 }
-
-// Prop Validation
-AddYouTubeVideo.propTypes = {
-  // Redux-form values from parent
-  fields: PropTypes.object.isRequired,
-  resetForm: PropTypes.func.isRequired,
-  
-  // Source specific fields
-  youTubeVideoId: PropTypes.string,
-  setSelectionInProgress: PropTypes.bool.isRequired
-};
 
 // Map redux state to component props
 function mapStateToProps(state) {

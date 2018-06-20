@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+
+import React from 'react';
 import { Row, Col, Button, Alert } from 'react-bootstrap';
 import { reduxForm } from 'redux-form';
 import { validateForm } from 'lib/validation';
@@ -6,7 +7,7 @@ import { validateForm } from 'lib/validation';
 import Icon from 'components/shared/icon';
 import Input from 'components/shared/input';
 
-class RegistrationForm extends Component {
+class RegistrationForm extends React.Component {
   render() {
     const { fields: { firstName, lastName, email, password, retypePassword }, handleSubmit, submitting, error } = this.props;
     
@@ -38,15 +39,6 @@ class RegistrationForm extends Component {
     );
   }
 }
-
-// Prop validation
-RegistrationForm.propTypes = {
-  // Provided by redux-form
-  fields: PropTypes.object.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  submitting: PropTypes.bool.isRequired,
-  error: PropTypes.string
-};
 
 // Validation constraints
 const constraints = {

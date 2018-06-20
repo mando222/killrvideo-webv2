@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+
+import React from 'react';
 import { connect } from 'react-redux';
 import { range } from 'lodash';
 import { routeActions } from 'react-router-redux';
@@ -13,7 +14,7 @@ import VideoPreview from 'components/videos/video-preview';
 // Styles needed by the view
 require('search-results.css');
 
-class SearchResults extends Component {
+class SearchResults extends React.Component {
   componentDidMount() {
     this.props.searchFor(this.props.searchTerm, SearchResults.queries.preview());
   }
@@ -99,28 +100,6 @@ SearchResults.queries = {
       ...VideoPreview.queries.preview()
     ];
   }
-};
-
-// Prop validation
-SearchResults.propTypes = {
-  // From react router
-  searchTerm: PropTypes.string.isRequired,
-  
-  // From redux search state
-  isLoading: PropTypes.bool.isRequired,
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
-  currentPageIndex: PropTypes.number.isRequired,
-  moreDataOnServer: PropTypes.bool.isRequired,
-  pagingConfig: PropTypes.object.isRequired,
-  nextPageDisabled: PropTypes.bool.isRequired,
-  previousPageDisabled: PropTypes.bool.isRequired,
-  
-  // Actions
-  searchFor: PropTypes.func.isRequired,
-  nextPageClick: PropTypes.func.isRequired,
-  previousPageClick: PropTypes.func.isRequired,
-  unload: PropTypes.func.isRequired,
-  push: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state, ownProps) {

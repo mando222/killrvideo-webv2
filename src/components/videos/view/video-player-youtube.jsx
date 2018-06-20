@@ -1,7 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import youTubePlayerLoaded from 'lib/youtube-player-loaded';
 
-class VideoPlayerYouTube extends Component {
+class VideoPlayerYouTube extends React.Component {
   createYouTubePlayer() {
     youTubePlayerLoaded.then(YT => {
       // Fire the playback started handler whenever the state changes appropriately
@@ -42,12 +42,6 @@ VideoPlayerYouTube.queries = {
       [ ['location'] ] 
     ];
   }
-};
-
-// Prop validation
-VideoPlayerYouTube.propTypes = {
-  video: PropTypes.object.isRequired,
-  onPlaybackStarted: PropTypes.func.isRequired
 };
 
 export default VideoPlayerYouTube;

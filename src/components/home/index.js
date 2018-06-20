@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+
+import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Row } from 'react-bootstrap';
@@ -8,7 +9,7 @@ import * as AuthActions from 'actions/authentication';
 
 import VideoPreviewList from '../videos/video-preview-list';
 
-class Home extends Component {
+class Home extends React.Component {
   componentDidMount() {
     if (this.props.isLoggedIn === null) {
       this.props.getIsLoggedIn();
@@ -42,21 +43,6 @@ class Home extends Component {
     );
   }
 }
-
-// Prop validation
-Home.propTypes = {
-  // State from redux store
-  isLoggedIn: PropTypes.bool,
-  recentVideos: PropTypes.object.isRequired,
-  recommendedVideos: PropTypes.object.isRequired,
-  myVideos: PropTypes.object.isRequired,
-  
-  // Actions
-  recentVideosActions: PropTypes.object.isRequired,
-  recommendedVideosActions: PropTypes.object.isRequired,
-  myVideosActions: PropTypes.object.isRequired,
-  getIsLoggedIn: PropTypes.func.isRequired
-};
 
 function mapStateToProps(state) {
   const { authentication: { currentUser: { isLoggedIn } }, home: { recentVideos, recommendedVideos, myVideos } } = state;

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+
+import React from 'react';
 import { connect } from 'react-redux';
 import { clearVideoSelection } from 'actions/add-uploaded-video';
 
@@ -10,7 +11,7 @@ import Icon from 'components/shared/icon';
 import UploadProgress from './upload-progress';
 
 // Component for when current browser doesn't support APIs needed for uploading a video
-class AddUploadedVideoNotSupported extends Component {
+class AddUploadedVideoNotSupported extends React.Component {
   render() {
     return (
       <Alert bsStyle="danger">
@@ -21,7 +22,7 @@ class AddUploadedVideoNotSupported extends Component {
 }
 
 // Inputs needed to add a new uploaded video
-class AddUploadedVideo extends Component {
+class AddUploadedVideo extends React.Component {
   doReset() {
     this.props.clearVideoSelection();
     this.props.fields.uploadFile.onChange(null);
@@ -98,21 +99,6 @@ class AddUploadedVideo extends Component {
     );
   }
 }
-
-// Prop validation
-AddUploadedVideo.propTypes = {
-  // Passed in from parent's redux-form state
-  fields: PropTypes.object.isRequired,
-  resetForm: PropTypes.func.isRequired,
-  asyncValidate: PropTypes.func.isRequired,
-  untouchAll: PropTypes.func.isRequired,
-  
-  // From redux state
-  statusMessageStyle: PropTypes.string.isRequired,
-  
-  // Actions
-  clearVideoSelection: PropTypes.func.isRequired
-};
 
 function mapStateToProps(state) {
   const { addVideo: { upload: { statusMessageStyle } } } = state;

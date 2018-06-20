@@ -29,6 +29,7 @@
     "classnames": "^2.2.6",
     "graphql": "^0.12.3",
     "graphql-tools-type-uuid": "^1.0.2",
+    "history": "^4.7.2",
     "jsuri": "^1.3.1",
     "lodash": "^4.17.10",
     "md5": "^2.2.1",

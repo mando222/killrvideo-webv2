@@ -1,9 +1,10 @@
-import React, { Component, PropTypes } from 'react';
+
+import React from 'react';
 import { connect } from 'react-redux';
 
 import { ProgressBar } from 'react-bootstrap';
 
-class UploadProgress extends Component {
+class UploadProgress extends React.Component {
   render() {
     const { statusMessage, statusMessageStyle, percentComplete } = this.props;
     
@@ -15,14 +16,6 @@ class UploadProgress extends Component {
     );
   }
 }
-
-// Prop validation
-UploadProgress.propTypes = {
-  // Redux state
-  statusMessage: PropTypes.string.isRequired,
-  statusMessageStyle: PropTypes.string.isRequired,
-  percentComplete: PropTypes.number.isRequired
-};
 
 // Map redux state to component props
 function mapStateToProps(state) {

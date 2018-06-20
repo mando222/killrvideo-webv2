@@ -2,8 +2,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { createSelector } from 'reselect';
 import { joinRoom, getMessages, sendMessage, leaveRoom } from 'actions/chat';
-
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { Row, Col, Nav, NavItem } from 'react-bootstrap';
 import Icon from 'components/shared/icon';
 
@@ -15,7 +14,7 @@ import ChatUsersList from './chat-users-list';
 require('chat.css');
 
 // Main chat UI
-class Chat extends Component {
+class Chat extends React.Component {
   constructor(props) {
     super(props);
     
@@ -93,20 +92,6 @@ Chat.queries = {
   user() {
     return ChatUsersList.queries.user();
   }
-};
-
-// Prop validation
-Chat.propTypes = {
-  // State
-  roomName: PropTypes.string.isRequired,
-  users: PropTypes.object.isRequired,
-  messages: PropTypes.object.isRequired,
-  
-  // Actions
-  joinRoom: PropTypes.func.isRequired,
-  getMessages: PropTypes.func.isRequired,
-  sendMessage: PropTypes.func.isRequired,
-  leaveRoom: PropTypes.func.isRequired
 };
 
 // Some selectors for mapping redux state to props

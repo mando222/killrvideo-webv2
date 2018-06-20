@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+
+import React from 'react';
 import { connect } from 'react-redux';
 import { routeActions } from 'react-router-redux';
 
@@ -6,7 +7,7 @@ import { Row, Col, Panel, Button } from 'react-bootstrap';
 import SignInForm from './sign-in-form';
 import { login } from 'actions/authentication';
 
-class SignIn extends Component {
+class SignInContainer extends React.Component {
   componentWillReceiveProps(nextProps) {
     // Redirect once logged in
     if (this.props.isLoggedIn !== nextProps.isLoggedIn && nextProps.isLoggedIn === true) {
@@ -51,19 +52,6 @@ class SignIn extends Component {
   }
 }
 
-// Prop validation
-SignIn.propTypes = {
-  // State from redux
-  isLoggedIn: PropTypes.bool.isRequired,
-  
-  // From react-router
-  location: PropTypes.object.isRequired,
-  
-  // Actions
-  login: PropTypes.func.isRequired,
-  push: PropTypes.func.isRequired
-};
-
 function mapStateToProps(state) {
   let { 
     authentication: { 
@@ -74,4 +62,11 @@ function mapStateToProps(state) {
   return { isLoggedIn };
 }
 
-export default connect(mapStateToProps, { login, push: routeActions.push })(SignIn);
+
+
+const SignIn = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SignInContainer)
+
+export default SignIn;

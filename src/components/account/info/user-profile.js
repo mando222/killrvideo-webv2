@@ -1,11 +1,12 @@
-import React, { Component, PropTypes } from 'react';
+
+import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { isUndefined } from 'lodash';
 
 import LoadingSpinner from 'components/shared/loading-spinner';
 import UserProfileImage from 'components/users/user-profile-image';
 
-class UserProfile extends Component {
+class UserProfile extends React.Component {
   render() {
     const { isLoading, email, firstName, lastName } = this.props.user;
     
@@ -31,18 +32,14 @@ class UserProfile extends Component {
   }
 }
 
-// Prop validation
-UserProfile.propTypes = {
-  user: PropTypes.object.isRequired
-};
 
 // Falcor queries
 UserProfile.queries = {
-  user() {
-    return [
-      [ ['email', 'firstName', 'lastName'] ]
-    ];
-  }
+  // user() {
+  //   return [
+  //     [ ['email', 'firstName', 'lastName'] ]
+  //   ];
+  // }
 };
 
 export default UserProfile;

@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 // Create component for displaying Font Awesome icons
-class Icon extends Component {
+class Icon extends React.Component {
   render() {
     const { className, name, size, fixedWidth, list, border, pull, animate, rotate, flip, ...otherProps } = this.props;
     
@@ -25,17 +24,5 @@ class Icon extends Component {
     );
   }
 }
-
-Icon.propTypes = {
-  name: PropTypes.string.isRequired,
-  size: PropTypes.oneOf(['lg', '2x', '3x', '4x', '5x' ]),
-  fixedWidth: PropTypes.bool,
-  list: PropTypes.bool,
-  border: PropTypes.bool,
-  pull: PropTypes.oneOf(['left', 'right']),
-  animate: PropTypes.oneOf(['spin', 'pulse']),
-  rotate: PropTypes.oneOf([ 90, 180, 270 ]),
-  flip: PropTypes.oneOf([ 'horizontal', 'vertical' ])
-};
 
 export default Icon;

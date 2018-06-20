@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+
+import React from 'react';
 import { Row, Col, Alert, Button } from 'react-bootstrap';
 import { reduxForm } from 'redux-form';
 
@@ -16,7 +17,7 @@ import { unload } from 'actions/add-video';
 // Styles needed by the view
 require('add-video.css');
 
-class AddVideo extends Component {
+class AddVideo extends React.Component {
   componentDidUpdate(prevProps) {
     // If location type changes, reset the form
     if (prevProps.videoLocationType !== this.props.videoLocationType) {
@@ -107,23 +108,6 @@ class AddVideo extends Component {
     );
   }
 }
-
-// Prop validation
-AddVideo.propTypes = {
-  // Common state from redux
-  addedVideoId: PropTypes.string,
-  showCommonDetails: PropTypes.bool.isRequired,
-  videoLocationType: PropTypes.number.isRequired,
-  
-  // From redux form
-  fields: PropTypes.object.isRequired,
-  resetForm: PropTypes.func.isRequired,
-  asyncValidate: PropTypes.func.isRequired,
-  untouchAll: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  submitting: PropTypes.bool.isRequired,
-  error: PropTypes.string
-};
 
 // Map redux store state to component props
 function mapStateToProps(state) {

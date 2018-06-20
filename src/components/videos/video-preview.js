@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import moment from 'moment';
 
 import ViewVideoLink from './view-video-link';
@@ -7,7 +7,7 @@ import ViewVideoLink from './view-video-link';
 var uploadPreviewUrl = require('upload-preview.png');
 
 // Component for rendering a video preview
-class VideoPreview extends Component {
+class VideoPreview extends React.Component {
   render() {
     const v = this.props.preview;
     const previewImageLocation = v.previewImageLocation
@@ -51,11 +51,6 @@ VideoPreview.queries = {
       author
     ];
   }
-};
-
-// Prop validation
-VideoPreview.propTypes = {
-  preview: PropTypes.object.isRequired
 };
 
 export default VideoPreview;

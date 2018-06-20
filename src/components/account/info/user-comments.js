@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+
+import React from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router';
 import { isUndefined, range } from 'lodash';
@@ -9,7 +10,7 @@ import LoadingSpinner from 'components/shared/loading-spinner';
 import Icon from 'components/shared/icon';
 
 
-class UserComments extends Component {
+class UserComments extends React.Component {
   render() {
     const { data: comments, isLoading, moreDataOnServer, currentPageIndex, pagingConfig, nextPageDisabled } = this.props.comments;
     
@@ -58,12 +59,6 @@ class UserComments extends Component {
     );
   }
 }
-
-// Prop validation
-UserComments.propTypes = {
-  comments: PropTypes.object.isRequired,
-  showMoreComments: PropTypes.func.isRequired
-};
 
 // Falcor queries
 UserComments.queries = {

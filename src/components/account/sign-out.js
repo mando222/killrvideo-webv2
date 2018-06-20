@@ -1,11 +1,10 @@
 import { connect } from 'react-redux';
 import { logout } from 'actions/authentication';
-
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { Link } from 'react-router';
 import { Alert } from 'react-bootstrap';
 
-class SignOut extends Component {
+class SignOut extends React.Component {
   componentDidMount() {
     // Sign the user out
     this.props.logout();
@@ -22,11 +21,6 @@ class SignOut extends Component {
     );
   }
 }
-
-// Prop validation
-SignOut.propTypes = {
-  logout: PropTypes.func.isRequired
-};
 
 // Export component
 export default connect(null, { logout })(SignOut);

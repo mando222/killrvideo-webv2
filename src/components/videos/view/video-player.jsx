@@ -1,10 +1,10 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { ResponsiveEmbed } from 'react-bootstrap';
 import VideoPlayerYouTube from './video-player-youtube';
 import VideoPlayerUpload from './video-player-upload';
 import VideoLocationTypes from 'lib/video-location-types';
 
-class VideoPlayer extends Component {
+class VideoPlayer extends React.Component {
   render() {
     // Figure out which player to show
     let videoPlayer;
@@ -43,12 +43,6 @@ VideoPlayer.queries = {
       ...VideoPlayerUpload.queries.video()
     ];
   }
-};
-
-// Prop types
-VideoPlayer.propTypes = {
-  videoDetails: PropTypes.object.isRequired,
-  onPlaybackStarted: PropTypes.func.isRequired
 };
 
 export default VideoPlayer;

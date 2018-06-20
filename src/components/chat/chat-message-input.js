@@ -1,11 +1,12 @@
-import React, { Component, PropTypes } from 'react';
+
+import React from 'react';
 import { Button } from 'react-bootstrap';
 import Input from 'components/shared/input';
 
 import { reduxForm } from 'redux-form';
 import { validateForm } from 'lib/validation';
 
-class ChatMessageInput extends Component {
+class ChatMessageInput extends React.Component {
   componentWillReceiveProps(nextProps) {
     // If the message field was touched, but doesn't have a value, just reset the form so we don't show validation
     if (nextProps.fields.message.touched && nextProps.fields.message.value === '') {
@@ -34,16 +35,6 @@ class ChatMessageInput extends Component {
     );
   }
 }
-
-// Prop validation
-ChatMessageInput.propTypes = {
-  // From redux form
-  handleSubmit: PropTypes.func.isRequired,
-  resetForm: PropTypes.func.isRequired,
-  fields: PropTypes.object.isRequired,
-  invalid: PropTypes.bool.isRequired,
-  submitting: PropTypes.bool.isRequired
-};
 
 // Validation constraints
 const constraints = {

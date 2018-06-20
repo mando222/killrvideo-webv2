@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+
+import React from 'react';
 import { connect } from 'react-redux';
 import { routeActions } from 'react-router-redux';
 
@@ -6,7 +7,7 @@ import { Row, Col } from 'react-bootstrap';
 import RegistrationForm from './registration-form';
 import { register } from 'actions/authentication';
 
-class Register extends Component {
+class RegisterContainer extends React.Component {
   componentWillReceiveProps(nextProps) {
     // Redirect the user after registering and being logged in
     if (this.props.isLoggedIn !== nextProps.isLoggedIn && nextProps.isLoggedIn === true) {
@@ -33,19 +34,6 @@ class Register extends Component {
   }
 }
 
-// Prop validation
-Register.propTypes = {
-  // State from redux
-  isLoggedIn: PropTypes.bool.isRequired,
-  
-  // From react-router
-  location: PropTypes.object.isRequired,
-  
-  // Actions
-  register: PropTypes.func.isRequired,
-  push: PropTypes.func.isRequired
-};
-
 function mapStateToProps(state) {
   let { 
     authentication: { 
@@ -55,4 +43,10 @@ function mapStateToProps(state) {
   return { isLoggedIn };
 }
 
-export default connect(mapStateToProps, { register, push: routeActions.push })(Register);
+
+
+const Register = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(RegisterContainer)
+export default Register;

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import { validateForm } from '../../lib/validation';
@@ -35,18 +34,6 @@ class SearchBox extends React.Component {
     );
   }
 }
-
-SearchBox.propTypes = {
-  // Provided by redux-form
-  fields: PropTypes.object.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  
-  // Other
-  suggestions: PropTypes.arrayOf(PropTypes.string).isRequired,
-  
-  // Actions
-  getSuggestions: PropTypes.func.isRequired
-};
 
 const searchConstraints = {
   query: { presence: true }

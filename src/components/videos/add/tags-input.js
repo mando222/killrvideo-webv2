@@ -1,9 +1,10 @@
-import React, { Component, PropTypes } from 'react';
+
+import React from 'react';
 import { isUndefined } from 'lodash';
 import { Label, Glyphicon } from 'react-bootstrap';
 
 // Component for entering tags (i.e. keywords) for a video
-class TagsInput extends Component {
+class TagsInput extends React.Component {
   constructor(props) {
     super(props);
     
@@ -115,16 +116,5 @@ class TagsInput extends Component {
     );
   }
 }
-
-// Prop validation
-TagsInput.propTypes = {
-  value: PropTypes.arrayOf(PropTypes.string),
-  defaultValue: PropTypes.arrayOf(PropTypes.string),
-  placeholder: PropTypes.string,
-  
-  onChange: PropTypes.func,
-  onFocus: PropTypes.func,
-  onBlur: PropTypes.func
-};
 
 export default TagsInput;

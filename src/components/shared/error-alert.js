@@ -1,8 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-class ErrorAlert extends Component {
+class ErrorAlert extends React.Component {
   render() {
     let classes = classNames({
       'alert': true,
@@ -18,10 +17,5 @@ class ErrorAlert extends Component {
     );
   }
 }
-
-// Prop validation
-ErrorAlert.propTypes = {
-  errors: PropTypes.arrayOf(PropTypes.string).isRequired
-};
 
 export default ErrorAlert;

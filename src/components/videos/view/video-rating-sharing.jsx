@@ -1,10 +1,10 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { range } from 'lodash';
 import classNames from 'classnames';
 
 // An individual star component for use in the VideoRatingSharing component below
-class StarRating extends Component {
+class StarRating extends React.Component {
   render() {
     const starClasses = classNames({
       'star': true,
@@ -17,16 +17,6 @@ class StarRating extends Component {
     );
   }
 }
-
-// Prop validation
-StarRating.propTypes = {
-  starValue: PropTypes.number.isRequired,
-  currentRating: PropTypes.number.isRequired,
-  proposedRating: PropTypes.number.isRequired,
-  onClick: PropTypes.func.isRequired,
-  onMouseOver: PropTypes.func.isRequired,
-  onMouseOut: PropTypes.func.isRequired
-};
 
 // Component for the Video Rating and Sharing row on the view video page
 class VideoRatingSharing extends Component {

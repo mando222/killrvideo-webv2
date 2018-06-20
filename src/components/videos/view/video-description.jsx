@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 
 const AnimationStates = {
   QUEUED: 'QUEUED',
@@ -7,7 +7,7 @@ const AnimationStates = {
 };
 
 // Component for displaying the video description that makes it possible to expand/collapse the description text
-class VideoDescription extends Component {
+class VideoDescription extends React.Component {
   constructor(props) {
     super(props);
     
@@ -89,11 +89,6 @@ VideoDescription.queries = {
       [ ['description'] ]
     ];
   }
-};
-
-// Prop validation
-VideoDescription.propTypes = {
-  video: PropTypes.object.isRequired
 };
 
 export default VideoDescription;

@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { range, isUndefined } from 'lodash';
@@ -10,7 +10,7 @@ import VideoPreview from './video-preview';
 // Styles needed by the component
 require('video-preview-list.css');
 
-class VideoPreviewList extends Component {
+class VideoPreviewList extends React.Component {
   componentDidMount() {
     // Get the initial previews once mounted
     this.props.load(VideoPreviewList.queries.preview());
@@ -120,25 +120,6 @@ VideoPreviewList.queries = {
       ...VideoPreview.queries.preview()
     ]
   }
-};
-
-// Prop validation
-VideoPreviewList.propTypes = {
-  title: PropTypes.string.isRequired,
-  
-  isLoading: PropTypes.bool.isRequired,
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
-  currentPageIndex: PropTypes.number.isRequired,
-  moreDataOnServer: PropTypes.bool.isRequired,
-  pagingConfig: PropTypes.object.isRequired,
-  nextPageDisabled: PropTypes.bool.isRequired,
-  previousPageDisabled: PropTypes.bool.isRequired,
-  
-  // Actions
-  load: PropTypes.func.isRequired,
-  unload: PropTypes.func.isRequired,
-  nextPageClick: PropTypes.func.isRequired,
-  previousPageClick: PropTypes.func.isRequired
 };
 
 export default VideoPreviewList;

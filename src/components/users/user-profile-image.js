@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import md5 from 'md5';
 import classNames from 'classnames';
 
@@ -16,10 +15,5 @@ class UserProfileImage extends React.Component {
     );
   }
 }
-
-// Prop validation
-UserProfileImage.propTypes = {
-  email: PropTypes.string.isRequired
-};
 
 export default UserProfileImage;

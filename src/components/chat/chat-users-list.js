@@ -1,8 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import GeminiScrollbar from 'react-gemini-scrollbar';
 import LoadingSpinner from 'components/shared/loading-spinner';
 
-class ChatUsersList extends Component {
+class ChatUsersList extends React.Component {
   render() {
     const { users } = this.props;
 
@@ -25,11 +25,6 @@ ChatUsersList.queries = {
       [ [ 'userId', 'firstName', 'lastName' ] ]
     ];
   }
-};
-
-// Prop validation
-ChatUsersList.propTypes = {
-  users: PropTypes.object.isRequired
 };
 
 export default ChatUsersList;

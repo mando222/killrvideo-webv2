@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { Button } from 'react-bootstrap';
 import moment from 'moment';
 import { range } from 'lodash';
@@ -24,7 +24,7 @@ function renderComment(comment, author) {
 }
 
 // Displays the comments on a video
-class VideoComments extends Component {
+class VideoComments extends React.Component {
   render() {
     const {
       comments: { data, isLoading, moreDataOnServer, currentPageIndex, pagingConfig, nextPageDisabled },
@@ -83,16 +83,6 @@ VideoComments.queries = {
       [ [ 'firstName', 'lastName', 'email', 'userId' ] ]
     ];
   }
-};
-
-// Prop validation
-VideoComments.propTypes = {
-  comments: PropTypes.object.isRequired,
-  addedComments: PropTypes.object.isRequired,
-  currentUser: PropTypes.object.isRequired,
-  
-  // Actions
-  showMoreComments: PropTypes.func.isRequired
 };
 
 export default VideoComments;

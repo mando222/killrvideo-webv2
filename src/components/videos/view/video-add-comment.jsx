@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { reduxForm } from 'redux-form';
 import { validateForm } from 'lib/validation';
 import classNames from 'classnames';
@@ -9,7 +9,7 @@ import Input from 'components/shared/input';
 import Icon from 'components/shared/icon';
 import { addAnotherComment } from 'actions/view-video';
 
-class VideoAddComment extends Component {
+class VideoAddComment extends React.Component {
   componentWillReceiveProps(nextProps) {
     // If the comment field was touched, but doesn't have a value, just reset the form so we don't show validation
     if (nextProps.fields.comment.touched && nextProps.fields.comment.value === '') {
@@ -79,23 +79,6 @@ class VideoAddComment extends Component {
     );
   }
 }
-
-// Prop validation
-VideoAddComment.propTypes = {
-  // Provided by redux-form
-  fields: PropTypes.object.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  invalid: PropTypes.bool.isRequired,
-  resetForm: PropTypes.func.isRequired,
-  
-  // Passed in
-  isLoggedIn: PropTypes.bool,
-  addedComments: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
-  
-  // Actions
-  addAnotherComment: PropTypes.func.isRequired
-};
 
 // Validation constraints
 const constraints = {

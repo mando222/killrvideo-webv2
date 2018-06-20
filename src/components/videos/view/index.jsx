@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+
+import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -15,7 +16,7 @@ import VideoPreviewList from 'components/videos/video-preview-list';
 // Styles needed by the view
 require('view-video.css');
 
-class ViewVideo extends Component {
+class ViewVideo extends React.Component {
   componentDidMount() {
     // Get the current user and video
     this.props.getCurrentUser(ViewVideo.queries.currentUser());
@@ -93,29 +94,6 @@ ViewVideo.queries = {
   currentUser() {
     return VideoDetails.queries.currentUser();
   }
-};
-
-// Prop validation
-ViewVideo.propTypes = {
-  // From react-router
-  videoId: PropTypes.string.isRequired,
-  location: PropTypes.object.isRequired,
-  
-  // From redux
-  viewVideo: PropTypes.object.isRequired,
-  currentUser: PropTypes.object.isRequired,
-  chatEnabled: PropTypes.bool.isRequired,
-  
-  // Actions
-  load: PropTypes.func.isRequired,
-  unload: PropTypes.func.isRequired,
-  recordPlayback: PropTypes.func.isRequired,
-  showMoreComments: PropTypes.func.isRequired,
-  addComment: PropTypes.func.isRequired,
-  addAnotherComment: PropTypes.func.isRequired,
-  moreLikeThisActions: PropTypes.object.isRequired,
-  push: PropTypes.func.isRequired,
-  getCurrentUser: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state, ownProps) {

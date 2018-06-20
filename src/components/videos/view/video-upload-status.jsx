@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import { getStatusUpdates, unload } from 'actions/upload-status';
@@ -7,7 +7,7 @@ import { updateVideoLocation } from 'actions/view-video';
 import { Alert } from 'react-bootstrap';
 
 // Component for showing the current status of an uploaded video
-class VideoUploadStatus extends Component {
+class VideoUploadStatus extends React.Component {
   componentDidMount() {
     // Start receiving status updates
     this.props.getStatusUpdates(this.props.videoId);
@@ -48,22 +48,6 @@ class VideoUploadStatus extends Component {
     );
   }
 }
-
-// Prop validation
-VideoUploadStatus.propTypes = {
-  videoId: PropTypes.string.isRequired,
-  
-  // From redux
-  status: PropTypes.string,
-  statusStyle: PropTypes.string,
-  statusDate: PropTypes.string,
-  location: PropTypes.string,
-  
-  // Actions
-  getStatusUpdates: PropTypes.func.isRequired,
-  unload: PropTypes.func.isRequired,
-  updateVideoLocation: PropTypes.func.isRequired
-};
 
 // Map redux state to component props
 function mapStateToProps(state) {

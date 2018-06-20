@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Input as BootstrapInput } from 'react-bootstrap';
 
 // Wrapper component for a Bootstrap input that adds some extra information from validation
 // props and allows for focusing the input once mounted
-class Input extends Component {
+class Input extends React.Component {
   componentDidMount() {
     if (this.props.focusOnMount) {
       this.focus();
@@ -44,11 +43,5 @@ class Input extends Component {
     );
   }
 }
-
-Input.propTypes = {
-  touched: PropTypes.bool,
-  error: PropTypes.string,
-  focusOnMount: PropTypes.bool
-};
 
 export default Input;

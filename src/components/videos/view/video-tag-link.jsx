@@ -1,8 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { Label, OverlayTrigger, Popover, Button } from 'react-bootstrap';
 import Icon from 'components/shared/icon';
 
-class VideoTagLink extends Component {
+class VideoTagLink extends React.Component {
   gotoSearch() {
     this.props.push({
       pathname: '/search/results',
@@ -27,12 +27,5 @@ class VideoTagLink extends Component {
     );
   }
 }
-
-// Prop validation
-VideoTagLink.propTypes = {
-  tag: PropTypes.string.isRequired,
-  push: PropTypes.func.isRequired,
-  chatEnabled: PropTypes.bool.isRequired
-};
 
 export default VideoTagLink;

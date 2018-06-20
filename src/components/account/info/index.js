@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+
+import React from 'react';
 import { connect } from 'react-redux';
 import { Row, Col, Button } from 'react-bootstrap';
 import { isUndefined } from 'lodash';
@@ -13,7 +14,7 @@ import UserVideos from './user-videos';
 // Styles needed by the view
 require('account-info.css');
 
-class AccountInfo extends Component {
+class AccountInfo extends React.Component {
   componentDidMount() {
     this.props.load(this.props.userId, AccountInfo.queries.user(), AccountInfo.queries.comments(), AccountInfo.queries.videos());
   }
@@ -27,10 +28,6 @@ class AccountInfo extends Component {
   
   componentWillUnmount() {
     this.props.unload();
-  }
-  
-  gotoAddVideo() {
-    this.props.push('/videos/add');
   }
   
   render() {
@@ -71,20 +68,6 @@ class AccountInfo extends Component {
   }
 }
 
-// Prop validation
-AccountInfo.propTypes = {
-  // From router
-  userId: PropTypes.string,
-  // From state
-  accountInfo: PropTypes.object.isRequired,
-  // Actions
-  load: PropTypes.func.isRequired, 
-  unload: PropTypes.func.isRequired, 
-  loadMoreComments: PropTypes.func.isRequired, 
-  videosNextPage: PropTypes.func.isRequired, 
-  videosPreviousPage: PropTypes.func.isRequired,
-  push: PropTypes.func.isRequired
-};
 
 // Falcor queries
 AccountInfo.queries = {
@@ -107,6 +90,5 @@ export default connect(mapStateToProps, {
   unload, 
   showMoreComments, 
   videosNextPage, 
-  videosPreviousPage, 
-  push: routeActions.push 
+  videosPreviousPage,
 })(AccountInfo);

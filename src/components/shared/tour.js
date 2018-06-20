@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Icon from './icon';
 import Joyride from 'react-joyride';
 import { connect } from 'react-redux';
@@ -621,11 +620,6 @@ class Tour extends React.Component {
   }
 }
 
-// Prop validation
-Tour.propTypes = {
-  push: PropTypes.func.isRequired
-};
-
 // Export component
-export default connect(null, { push: routeActions.push })(Tour);
+// export default connect(null, { push: routeActions.push })(Tour);
 //export default Tour;
