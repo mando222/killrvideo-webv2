@@ -1,6 +1,3 @@
-// Test Reducer
-export const TEST_REDUCE = "TEST_REDUCE";
-
 //User Reducer
 export const GET_USER="GET_USER";
 export const RESET_USER="RESET_USER";
@@ -44,3 +41,5 @@ export const UNLOAD="UNLOAD";
 
 //Misc Reducer
 export const SET_CONFIG="SET_CONFIG";
+export const TOGGLE_WHAT_IS_THIS="TOGGLE_WHAT_IS_THIS";
+export const SHOW_TOUR="SHOW_TOUR";

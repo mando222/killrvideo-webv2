@@ -1,13 +1,23 @@
-import {SET_CONFIG} from "../consts"
+import {SET_CONFIG,TOGGLE_WHAT_IS_THIS,SHOW_TOUR} from "../consts"
 
 const MiscReducer = (state = '', action) => {
     switch (action.type) {
         case SET_CONFIG:
             return {
                 ...state,
-                testReduce: {
-                    test:true
+                test: {
+                    test: true
                 }
+            }
+        case TOGGLE_WHAT_IS_THIS:
+            return {
+                ...state,
+                showWhatIsThis: action.open,
+            }
+        case SHOW_TOUR:
+            return {
+                ...state,
+                showTour: action.tourActive,
             }
         default:
             return state

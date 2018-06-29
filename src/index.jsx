@@ -8,11 +8,30 @@ import ReduxThunk from 'redux-thunk'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 injectTapEventPlugin();
 
+
+// Require basic CSS needed by the app
+// require('bootswatch/cosmo/bootstrap.css');
+// require('font-awesome/css/font-awesome.css');
+// require('gemini-scrollbar/gemini-scrollbar.css');
+// require('app.css');
+// require('react-joyride/lib/react-joyride-compiled.css');
+
 var initialState = {
-    TestReducer: {
-        testReduce: {
-            test: false
+    ChatReducer: {
+
+    },
+    MiscReducer:{
+        showWhatIsThis: true,
+        showTour: false,
+        searchSuggestions: null,
+    },
+    UserReducer: {
+        currentUser: {
+            isLoggedIn: false,
         }
+    },
+    VideoReducer: {
+
     }
 }
 

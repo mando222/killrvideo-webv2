@@ -622,4 +622,4 @@ class Tour extends React.Component {
 
 // Export component
 // export default connect(null, { push: routeActions.push })(Tour);
-//export default Tour;
+export default Tour;
