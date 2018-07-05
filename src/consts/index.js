@@ -43,3 +43,6 @@ export const UNLOAD="UNLOAD";
 export const SET_CONFIG="SET_CONFIG";
 export const TOGGLE_WHAT_IS_THIS="TOGGLE_WHAT_IS_THIS";
 export const SHOW_TOUR="SHOW_TOUR";
+
+//Nav Reducer
+export const CHANGE_SCREEN="CHANGE_SCREEN";

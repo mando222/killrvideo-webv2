@@ -17,6 +17,9 @@ injectTapEventPlugin();
 // require('react-joyride/lib/react-joyride-compiled.css');
 
 var initialState = {
+    NavReducer: {
+        page: "Home",
+    },
     ChatReducer: {
 
     },
@@ -31,7 +34,7 @@ var initialState = {
         }
     },
     VideoReducer: {
-
+        suggestions: "this is a test",
     }
 }
 

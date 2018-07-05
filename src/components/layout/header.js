@@ -8,15 +8,12 @@ import WhatIsThis from './what-is-this';
 import SearchBox from './search-box';
 import Tour from '../shared/tour';
 import {toggleWhatIsThis, toggleTour} from '../../actions/MiscActions'
-
-
-var logoUrl = '../../images/killrvideo.png'
+import {changeScreen} from '../../actions/NavActions'
 
 class HeaderContainer extends React.Component {
   componentDidMount() {
-      // this.props.getCurrentUser(Header.queries.currentUser());
+      this.props.getCurrentUser();
   }
-
 
   render() {
     // // Leave these undefined if we haven't gotten the current user information from the server yet
@@ -38,14 +35,14 @@ class HeaderContainer extends React.Component {
 
       loggedInMenu = (
         <NavDropdown eventKey={4} title={menuTitle} id="loggedin-user">
-          <MenuItem eventKey={4.1} onSelect={e => this.props.push('/account/info')}>
+          <MenuItem eventKey={4.1} onSelect={e => this.props.changeScreen('AccountInfo')}>
             <Icon name="cog" fixedWidth /> My Account
           </MenuItem>
-          <MenuItem eventKey={4.2} onSelect={e => this.props.push('/videos/add')}>
+          <MenuItem eventKey={4.2} onSelect={e => this.props.changeScreen('AddVideo')}>
             <Icon name="video-camera" fixedWidth /> Add a Video
           </MenuItem>
           <MenuItem divider />
-          <MenuItem eventKey={4.3} onSelect={e => this.props.push('/account/signout')}>
+          <MenuItem eventKey={4.3} onSelect={e => this.props.changeScreen('SignOut')}>
             <Icon name="sign-out" fixedWidth /> Sign Out
           </MenuItem>
         </NavDropdown>
@@ -57,12 +54,12 @@ class HeaderContainer extends React.Component {
     if (this.props.currentUser.isLoggedIn === false) {
       // Buttons for logging in or registering the site
       signIn = (
-        <NavItem id="sign-in" eventKey={2} href="#" onSelect={e => this.props.push('/account/signin')} className="text-uppercase">
+        <NavItem id="sign-in" eventKey={2} href="#" onSelect={e => this.props.changeScreen('SignIn')} className="text-uppercase">
           Sign in
         </NavItem>
       );
       register = (
-        <NavItem id="register" eventKey={3} href="#" onSelect={e => this.props.push('/account/register')} className="bg-success text-uppercase">
+        <NavItem id="register" eventKey={3} href="#" onSelect={e => this.props.changeScreen('Register')} className="bg-success text-uppercase">
           Register
         </NavItem>
       );
@@ -73,25 +70,25 @@ class HeaderContainer extends React.Component {
         <Navbar fixedTop id="navbar-main">
           <Navbar.Header>
             <Navbar.Brand>
-              {/*<Link to="/" id="logo">*/}
-                {/*<img src={logoUrl} alt="KillrVideo.com Logo" />*/}
-              {/*</Link>*/}
+              <a href="/" id="logo">
+                <img src='../../images/killrvideo.png' alt="KillrVideo.com Logo" />
+              </a>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
-              {/*<SearchBox onSubmit={vals => this.props.submitSearch(vals.query)} getSuggestions={this.props.getSuggestions} />*/}
-            {/*<Nav navbar pullRight>*/}
-              {/*<NavItem id="show-tour" eventKey={1} href="#" onSelect={e => this.startTour(this.props.currentUser.isLoggedIn)} >*/}
-                {/*<Icon name="map-signs" fixedWidth /> Tour: <span>{this.props.showTour ? 'On' : 'Off'}</span>*/}
-              {/*</NavItem>*/}
-              {/*<NavItem eventKey={1} href="#" onSelect={e => this.props.toggleWhatIsThis()} className={this.props.showWhatIsThis ? 'dropup' : ''}>*/}
-                {/*What is this? <span className="caret"></span>*/}
-              {/*</NavItem>*/}
-              {/*{signIn}*/}
-              {/*{register}*/}
-              {/*{loggedInMenu}*/}
-            {/*</Nav>*/}
+              <SearchBox onSubmit={vals => this.props.submitSearch(vals.query)} getSuggestions={this.props.getSuggestions} />
+            <Nav navbar pullRight>
+              <NavItem id="show-tour" eventKey={1} href="#" onSelect={e => this.startTour(this.props.currentUser.isLoggedIn)} >
+                <Icon name="map-signs" fixedWidth /> Tour: <span>{this.props.showTour ? 'On' : 'Off'}</span>
+              </NavItem>
+              <NavItem eventKey={1} href="#" onSelect={e => this.props.toggleWhatIsThis()} className={this.props.showWhatIsThis ? 'dropup' : ''}>
+                What is this? <span className="caret"></span>
+              </NavItem>
+              {signIn}
+              {register}
+              {loggedInMenu}
+            </Nav>
           </Navbar.Collapse>
         </Navbar>
         <WhatIsThis showWhatIsThis={this.props.showWhatIsThis} toggleWhatIsThis={this.props.toggleWhatIsThis} />
@@ -102,12 +99,12 @@ class HeaderContainer extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return {
-    currentUser: state.UserReducer.currentUser,
-    showWhatIsThis: state.MiscReducer.showWhatIsThis,
-    showTour: state.MiscReducer.showTour,
-    searchSuggestions: state.MiscReducer.searchSuggestions,
-  };
+    return {
+        currentUser: state.UserReducer.currentUser,
+        showWhatIsThis: state.MiscReducer.showWhatIsThis,
+        showTour: state.MiscReducer.showTour,
+        searchSuggestions: state.MiscReducer.searchSuggestions
+    };
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -136,7 +133,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             //   if (logout) this.props.push('/account/signout');
             //
             //   this.props.toggleTour();
-        }
+        },
+        changeScreen: (page) => {
+            dispatch(changeScreen(page))
+        },
     }
 }
 
@@ -146,4 +146,6 @@ const Header = connect(
 )(HeaderContainer)
 
 export default Header
+
+
 

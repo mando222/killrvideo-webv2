@@ -5,3 +5,15 @@ import {ADD_COMMENT,ADD_COMMENT_RESET,ADD_ANOTHER_COMMENT,GET_VIDEO,RECORD_PLAYB
 export function addComment(videoId, comment) {
 
 }
+
+export function recentVideos() {
+
+}
+
+export function recommendedVideos() {
+
+}
+
+export function myVideos() {
+
+}

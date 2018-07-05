@@ -1,33 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { reduxForm } from 'redux-form';
-import { validateForm } from '../../lib/validation';
 
 import Icon from '../shared/icon';
 
-class SearchBox extends React.Component {
-  handleChange(e) {
-    // Let form track the changes to the input then get suggestions
-    this.props.fields.query.onChange(e);
-    this.props.getSuggestions(e.target.value);
-  }
-  
+class SearchBoxContainer extends React.Component {
   render() {
-    const { fields: { query }, suggestions, handleSubmit } = this.props;
-    
+
     return (
       <form id="search-box" autoComplete="off" className="navbar-form navbar-left" role="search" method="GET" action="/search/results" 
-            onSubmit={handleSubmit}>
+            onSubmit={this.props.handleSearchSubmit}>
         <div className="input-group">
           <span className="input-group-btn">
             <button className="btn btn-default" type="submit">
               <Icon name="search" title="Search" />
             </button>
           </span>
-          <input type="text" {...query} onChange={e => this.handleChange(e)} className="form-control" name="query" 
+          <input type="text" onChange={e => this.props.handleSearchChange(e)} className="form-control" name="query"
                  placeholder="Search" list="navbar-search-suggestions" />
           <datalist id="navbar-search-suggestions">
-            {suggestions.map((s, idx) => <option value={s} key={s}></option>)}
+            {/*{this.props.suggestions.map((s, idx) => <option value={s} key={s}></option>)}*/}
           </datalist>
         </div>
       </form>
@@ -35,17 +26,27 @@ class SearchBox extends React.Component {
   }
 }
 
-const searchConstraints = {
-  query: { presence: true }
-};
-
 function mapStateToProps(state) {
-  return { suggestions: state.search.searchBox.suggestions };
+    return {
+        suggestions: state.VideoReducer.suggestions,
+        fields: state.VideoReducer.fields,
+    };
 }
 
-// Apply form component
-export default reduxForm({
-  form: 'search',
-  fields: [ 'query' ],
-  validate: vals => validateForm(vals, searchConstraints)
-}, mapStateToProps)(SearchBox);
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        handleSearchSubmit: () => {
+
+        },
+        handleSearchChange: () => {
+
+        }
+    }
+}
+
+const SearchBox = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SearchBoxContainer);
+
+export default SearchBox

@@ -1,25 +1,51 @@
 import React from 'react';
 import Header from './layout/header';
 import Footer from './layout/footer';
-import classNames from 'classnames';
+import { connect } from 'react-redux';
+import Register from './account/register/index'
+import SignIn from './account/sign-in'
 
-class Root extends React.Component{
+class RootContainer extends React.Component{
     render() {
-        // Add a class to the body wrapper is specified on any of the matched routes
-        // const wrapperClass = classNames(...this.props.routes.map(r => r.wrapperClassName));
         return (
             <div>
                 <div>
                     <Header />
-                    {/*<div id="body-wrapper" className={wrapperClass}>*/}
-                        {/*{this.props.children}*/}
-                        {/*<div id="push-footer" className="hidden-xs"></div>*/}
-                    {/*</div>*/}
+                        <div id="push-footer" className="hidden-xs">
+
+                        </div>
+                        <div>
+                            {{
+                                "Home": this.props.children,
+                                "Register": <Register/>,
+                                // "Tour": <ClustersContainer/>,
+                                "SignIn": <SignIn/>,
+                            }[this.props.page]}
+                        </div>
                     <Footer className="hidden-xs" />
                 </div>
             </div>
         )
     }
 }
+
+function mapStateToProps(state) {
+    console.log(state)
+    return {
+        page: state.NavReducer.page,
+        suggestions: state.VideoReducer.suggestions
+    };
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+
+    }
+}
+
+const Root = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(RootContainer);
 
 export default Root
