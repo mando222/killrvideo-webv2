@@ -4,6 +4,7 @@ import Footer from './layout/footer';
 import { connect } from 'react-redux';
 import Register from './account/register/index'
 import SignIn from './account/sign-in'
+import Tour from './shared/tour'
 
 class RootContainer extends React.Component{
     render() {
@@ -18,7 +19,7 @@ class RootContainer extends React.Component{
                             {{
                                 "Home": this.props.children,
                                 "Register": <Register/>,
-                                // "Tour": <ClustersContainer/>,
+                                "Tour": <Tour/>,
                                 "SignIn": <SignIn/>,
                             }[this.props.page]}
                         </div>

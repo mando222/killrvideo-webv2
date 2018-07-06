@@ -10,11 +10,11 @@ injectTapEventPlugin();
 
 
 // Require basic CSS needed by the app
-// require('bootswatch/cosmo/bootstrap.css');
-// require('font-awesome/css/font-awesome.css');
-// require('gemini-scrollbar/gemini-scrollbar.css');
-// require('app.css');
-// require('react-joyride/lib/react-joyride-compiled.css');
+import 'bootswatch/dist/cosmo/bootstrap.css';
+// import 'font-awesome/css/font-awesome.css';
+import 'gemini-scrollbar/gemini-scrollbar.css';
+import './css/app.css';
+import 'react-joyride/lib/react-joyride-compiled.css';
 
 var initialState = {
     NavReducer: {
