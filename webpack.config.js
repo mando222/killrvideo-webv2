@@ -1,12 +1,8 @@
 var webpack = require('webpack');
 var path = require('path');
 var combineLoaders = require('webpack-combine-loaders');
-require('style-loader');
-require('css-loader');
-
 
 var SOURCE_DIR = path.resolve(__dirname, 'src');
-
 var BUILD_DIR  = path.resolve(__dirname, 'src/public');
 
 var dev = {
@@ -36,7 +32,11 @@ var dev = {
                         }
                     }
                 ])
-            }
+            },{
+                test: /\.(jpe|jpg|woff|woff2|eot|ttf|svg)(\?.*$|$)/,
+                exclude: /node_modules/,
+                loader: 'url-loader?importLoaders=1&limit=100000'
+            },
         ]
     },
     devServer: {
@@ -44,7 +44,6 @@ var dev = {
         compress: true,
         port: 8080
     },
-
 };
 
 module.exports = [dev];
