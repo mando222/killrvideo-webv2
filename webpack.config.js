@@ -34,8 +34,7 @@ var dev = {
                 ])
             },{
                 test: /\.(jpe|jpg|woff|woff2|eot|ttf|svg)(\?.*$|$)/,
-                exclude: /node_modules/,
-                loader: 'url-loader?importLoaders=1&limit=100000'
+                loader: 'url-loader'
             },
         ]
     },

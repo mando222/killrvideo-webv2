@@ -11,7 +11,7 @@ injectTapEventPlugin();
 
 // Require basic CSS needed by the app
 import 'bootswatch/dist/cosmo/bootstrap.css';
-// import 'font-awesome/css/font-awesome.css';
+import 'font-awesome/css/font-awesome.css';
 import 'gemini-scrollbar/gemini-scrollbar.css';
 import './css/app.css';
 import 'react-joyride/lib/react-joyride-compiled.css';

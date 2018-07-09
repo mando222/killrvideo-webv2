@@ -13,7 +13,6 @@ class RootContainer extends React.Component{
                 <div>
                     <Header />
                         <div id="push-footer" className="hidden-xs">
-
                         </div>
                         <div>
                             {{
