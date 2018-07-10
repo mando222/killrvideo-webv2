@@ -21,17 +21,7 @@ var dev = {
                 loader : 'babel-loader',
             }, {
                 test: /\.css$/,
-                loader: combineLoaders([
-                    {
-                        loader: 'style-loader'
-                    }, {
-                        loader: 'css-loader',
-                        query: {
-                            modules: true,
-                            localIdentName: '[name]__[local]___[hash:base64:5]'
-                        }
-                    }
-                ])
+                loader: combineLoaders([{loader: 'style-loader'},{loader: 'css-loader'}])
             },{
                 test: /\.(jpe|jpg|woff|woff2|eot|ttf|svg)(\?.*$|$)/,
                 loader: 'url-loader'
