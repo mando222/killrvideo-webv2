@@ -25,7 +25,6 @@ class SignInContainer extends React.Component {
           <Col md={4} mdOffset={4}>
             <Panel header="Sign In" id="signin-account">
               <SignInForm onSubmit={vals => this.props.login(vals.email, vals.password)} />
-              
               <div className="section-divider text-center muted">
                 <span>New to KillrVideo?</span>
               </div>
@@ -42,13 +41,16 @@ class SignInContainer extends React.Component {
 }
 
 function mapStateToProps(state) {
-  let { 
-    authentication: { 
-      currentUser: { isLoggedIn } 
-    } 
-  } = state;
-  
-  return { isLoggedIn };
+  // let {
+  //   authentication: {
+  //     currentUser: { isLoggedIn }
+  //   }
+  // } = state;
+  //
+  // return { isLoggedIn };
+    return {
+        currentUser: state.UserReducer.currentUser,
+    };
 }
 
 
@@ -56,6 +58,9 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         redirectToRegister() {
+
+        },
+        login() {
 
         }
 

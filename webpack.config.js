@@ -6,7 +6,7 @@ var SOURCE_DIR = path.resolve(__dirname, 'src');
 var BUILD_DIR  = path.resolve(__dirname, 'src/public');
 
 var dev = {
-    devtool: 'eval-source-map',
+    devtool: 'source-map',
     entry: SOURCE_DIR + "/index.jsx",
     mode: "development",
     output: {
@@ -19,7 +19,7 @@ var dev = {
                 test : /\.jsx?/,
                 include : SOURCE_DIR,
                 loader : 'babel-loader',
-            }, {
+            },{
                 test: /\.css$/,
                 loader: combineLoaders([{loader: 'style-loader'},{loader: 'css-loader'}])
             },{

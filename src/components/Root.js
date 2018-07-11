@@ -11,7 +11,7 @@ class RootContainer extends React.Component{
         return (
             <div>
                 <div>
-                    <Header />
+                    <Header/>
                         <div id="push-footer" className="hidden-xs">
                         </div>
                         <div>

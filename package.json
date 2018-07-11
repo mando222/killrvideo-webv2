@@ -4,8 +4,8 @@
   "description": "Killer video web client",
   "main": "webpack.config.js",
   "scripts": {
-    "client-start": "webpack-dev-server",
-    "dev-watch": "./node_modules/.bin/webpack -d --watch"
+    "server-start": "node ./src/public/startWebPage.js",
+    "dev": "./node_modules/.bin/webpack -d --watch"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,7 @@
     "bootswatch": "^3.3.6",
     "classnames": "^2.2.6",
     "css-loader": "^1.0.0",
+    "express": "^4.16.3",
     "extract-text-webpack-plugin": "^3.0.2",
     "font-awesome": "^4.7.0",
     "gemini-scrollbar": "^1.5.3",
@@ -39,6 +40,8 @@
     "lodash": "^4.17.10",
     "md5": "^2.2.1",
     "node": "^10.4.0",
+    "nodemon": "^1.18.1",
+    "path": "^0.12.7",
     "prop-types": "^15.6.1",
     "react": "^16.0.0",
     "react-bootstrap": "^0.32.1",
@@ -56,8 +59,6 @@
     "validate.js": "^0.12.0",
     "webpack": "^4.12.0",
     "webpack-cli": "^2.1.5",
-    "webpack-combine-loaders": "^2.0.3",
-    "webpack-dev": "^1.1.0",
-    "webpack-dev-server": "^3.1.4"
+    "webpack-combine-loaders": "^2.0.3"
   }
 }
