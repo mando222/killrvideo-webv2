@@ -15,21 +15,21 @@ class Home extends React.Component {
   }
   
   render() {
-    const { 
+    const {
       isLoggedIn, recentVideos, recommendedVideos, myVideos,
-      recentVideosActions, recommendedVideosActions, myVideosActions 
+      recentVideosActions, recommendedVideosActions, myVideosActions
     } = this.props;
-    
+
     let recommendedVideosList, userVideosList;
     if (isLoggedIn === true) {
       recommendedVideosList = <VideoPreviewList title="Recommended for You" {...recommendedVideos} {...recommendedVideosActions} />;
       userVideosList = <VideoPreviewList title="My Videos" {...myVideos} {...myVideosActions} />;
     }
-    
+
     return (
       <div id="video-lists" className="body-content container">
         <Row id="recent-videos">
-          <VideoPreviewList title="Recent Videos" {...recentVideos} {...recentVideosActions} />
+          {/*<VideoPreviewList title="Recent Videos" {...recentVideos} {...recentVideosActions} />*/}
         </Row>
         <Row id="recommended-videos">
           {recommendedVideosList}
@@ -43,12 +43,11 @@ class Home extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { authentication: { currentUser: { isLoggedIn } }, home: { recentVideos, recommendedVideos, myVideos } } = state;
   return {
-    isLoggedIn,
-    recentVideos,
-    recommendedVideos,
-    myVideos
+    isLoggedIn: state.UserReducer.currentUser.isLoggedIn,
+    recentVideos: state.VideoReducer.recentVideos,
+    recommendedVideos: state.VideoReducer.recommendedVideos,
+    myVideos: state.VideoReducer.myVideos
   };
 }
 

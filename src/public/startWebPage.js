@@ -1,6 +1,7 @@
 var path = require("path"),
     express = require("express");
 
+//set up app perameters
 var DIST_DIR = path.join(__dirname, "./"),
     PORT = 8080,
     app = express();

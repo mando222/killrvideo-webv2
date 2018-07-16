@@ -4,11 +4,11 @@ import { Button } from 'react-bootstrap';
 import { range, isUndefined } from 'lodash';
 import classNames from 'classnames';
 
-import Icon from 'components/shared/icon';
+import Icon from '../shared/icon';
 import VideoPreview from './video-preview';
 
 // Styles needed by the component
-require('video-preview-list.css');
+import '../../css/video-preview-list.css';
 
 class VideoPreviewList extends React.Component {
   componentDidMount() {

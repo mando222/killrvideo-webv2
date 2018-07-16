@@ -6,7 +6,7 @@ var SOURCE_DIR = path.resolve(__dirname, 'src');
 var BUILD_DIR  = path.resolve(__dirname, 'src/public');
 
 var dev = {
-    devtool: 'source-map',
+    devtool: 'module-source-map',
     entry: SOURCE_DIR + "/index.jsx",
     mode: "development",
     output: {
@@ -27,12 +27,7 @@ var dev = {
                 loader: 'url-loader'
             },
         ]
-    },
-    devServer: {
-        contentBase: BUILD_DIR,
-        compress: true,
-        port: 8080
-    },
+    }
 };
 
 module.exports = [dev];

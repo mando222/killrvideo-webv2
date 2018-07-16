@@ -31,10 +31,17 @@ var initialState = {
     UserReducer: {
         currentUser: {
             isLoggedIn: false,
+            firstname:null,
+            lastname:null,
+            email:null,
+            password:null
         }
     },
     VideoReducer: {
         suggestions: "this is a test",
+        recentVideos: null,
+        recommendedVideos: null,
+        myVideos: null
     }
 }
 

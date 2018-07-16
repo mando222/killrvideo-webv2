@@ -1,24 +1,14 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { routeActions } from 'react-router-redux';
-
 import { Row, Col } from 'react-bootstrap';
 import RegistrationForm from './registration-form';
 import { register } from '../../../actions/UserActions';
 
 class RegisterContainer extends React.Component {
-  componentWillReceiveProps(nextProps) {
-    // Redirect the user after registering and being logged in
-    if (this.props.currentUser.isLoggedIn !== nextProps.currentUser.isLoggedIn && nextProps.currentUser.isLoggedIn === true) {
-      const { location: { state } } = this.props;
-      if (state && state.redirectAfterLogin) {
-        this.props.push(state.redirectAfterLogin);
-      } else {
-        this.props.push('/');
-      }
+    componentWillReceiveProps(nextProps) {
+
     }
-  }
 
   render() {
     return (
@@ -35,12 +25,16 @@ class RegisterContainer extends React.Component {
 }
 
 function mapStateToProps(state) {
-    currentUser: state.UserReducer.currentUser
+    return {
+        currentUser: state.UserReducer.currentUser
+    }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-
+        register: (firstname, lastname, email,password) => {
+            dispatch(register(firstname, lastname, email,password))
+        }
     }
 }
 
