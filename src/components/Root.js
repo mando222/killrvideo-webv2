@@ -12,14 +12,12 @@ class RootContainer extends React.Component{
             <div>
                 <div>
                     <Header/>
-                    <div>
                         {{
                             "Home": <Home/>,
                             "Register": <Register/>,
                             "Tour": <Tour/>,
-                            // "SignIn": <SignIn/>,
+                            // "SignIn": <SignIn/>
                         }[this.props.page]}
-                    </div>
                         <div id="push-footer" className="hidden-xs">
                         </div>
                     <Footer className="hidden-xs" />
