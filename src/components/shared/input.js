@@ -1,47 +1,63 @@
 import React from 'react';
-import { Input as BootstrapInput } from 'react-bootstrap';
+import {Row,Col,FormGroup, FormControl,ControlLabel,HelpBlock} from 'react-bootstrap';
 
-// Wrapper component for a Bootstrap input that adds some extra information from validation
-// props and allows for focusing the input once mounted
+// this input element takes the following props
+// default value - optional default value for the input *Optional*
+// controlId - ids for the elements
+// name - name
+// type - text,file,email,password,
+// helpblock - the text for the help block *Optional*
+
 class Input extends React.Component {
-  componentDidMount() {
-    if (this.props.focusOnMount) {
-      this.focus();
+    constructor(props, context) {
+        super(props, context);
+        this.handleChange = this.handleChange.bind(this);
+        this.state = {
+             value: props.value ? props.value : "",
+             controlId:props.controlId,
+             name:props.name,
+             type:props.type,
+             helpblock:props.helpblock ? props.helpblock : ""
+         }
     }
-  }
-  
-  focus() {
-    this._input.getInputDOMNode().focus();
-  }
-  
-  getBootstrapProps(touched, error) {
-    if (!touched) {
-      return { };
+
+    //custom form validation
+    getValidationState() {
+        const length = this.state.value.length;
+        if (length > 10) return 'success';
+        else if (length > 5) return 'warning';
+        else if (length > 0) return 'error';
+        return null;
     }
-    
-    return error 
-      ? { bsStyle: 'error', help: error } 
-      : { bsStyle: 'success', help: this.props.help };
-  }
-  
-  render() {
-    // React treats undefined differently for textarea inputs so we need to change undefined
-    // to an empty string here to prevent it from being uncontrolled (and thus not responding to a reset)
-    // (see: https://github.com/facebook/react/issues/2533)
-    let textAreaValue = this.props.value;
-    if (this.props.type === 'textarea') {
-      textAreaValue = this.props.value || '';
+
+    handleChange(e) {
+        this.setState({ value: e.target.value });
     }
-    
-    const { children, value, ...otherProps } = this.props;
-    
-    return (
-      <BootstrapInput {...otherProps} {...this.getBootstrapProps(this.props.touched, this.props.error)}
-                      value={textAreaValue} ref={c => this._input = c}>
-        {children}
-      </BootstrapInput>
-    );
-  }
+
+    render() {
+        return (
+            <Row>
+                <FormGroup
+                    controlId={this.state.controlId}
+                    validationState={this.getValidationState()}
+                >
+                    <Col componentClass={ControlLabel} sm={2}>
+                        {this.state.name}
+                    </Col>
+                    <Col sm={10}>
+                        <FormControl
+                            type={this.state.type}
+                            value={this.state.value}
+                            placeholder={this.state.name}
+                            onChange={this.handleChange}
+                        />
+                    </Col>
+                    <HelpBlock>{this.state.helpblock}</HelpBlock>
+                </FormGroup>
+            </Row>
+        );
+    }
 }
+
 
 export default Input;

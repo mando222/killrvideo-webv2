@@ -22,5 +22,8 @@ export function getIsLoggedIn() {
 
 // Register a new user
 export function register(firstName, lastName, email, password) {
-
+    console.log (firstName)
+    console.log (lastName)
+    console.log (email)
+    console.log (password)
 };

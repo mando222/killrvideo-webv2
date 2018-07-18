@@ -92,9 +92,6 @@ class VideoPreviewList extends React.Component {
                   
                 })}
               </ul>
-
-
-
             <div className="video-preview-list-nav">
               <Button bsStyle="primary" title="Next Page" disabled={nextPageDisabled} onClick={() => nextPageClick(VideoPreviewList.queries.preview())}>
                 <Icon name="caret-down" size="lg" className="visible-xs-inline" />

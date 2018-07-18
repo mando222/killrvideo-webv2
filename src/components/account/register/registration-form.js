@@ -1,58 +1,71 @@
 import React from 'react';
-import { Row, Col, Button, Alert } from 'react-bootstrap';
+import { Row, Col, Button, Alert, FormGroup, FormControl,ControlLabel} from 'react-bootstrap';
 import { reduxForm } from 'redux-form';
 import { validateForm } from '../../../lib/validation';
-
 import Icon from '../../shared/icon';
-import Input from '../../shared/input';
+import Input from '../../shared/Input';
 
-class RegistrationFormContainer extends React.Component {
-  render() {
-    const { fields: { firstName, lastName, email, password, retypePassword }, handleSubmit, submitting, error } = this.props;
+function handleSubmit (){
 
-    return (
-      <form role="form" onSubmit={handleSubmit}>
-        <Alert bsStyle="info" className={error ? 'hidden' : undefined}>
-          Register for an account to upload and comment on videos.
-        </Alert>
-        <Alert bsStyle="danger" className={error ? undefined : 'hidden'}>{error}</Alert>
-
-        <div id="register-account-fields">
-          <Row>
-            <Col md={5}>
-                {/*<Input {...firstName} type="text" placeholder="First name" label="First name" focusOnMount />*/}
-            </Col>
-            <Col md={7}>
-              {/*<Input {...lastName} type="text" placeholder="Last name" label="Last name" />*/}
-            </Col>
-          </Row>
-          {/*<Input {...email} type="email" placeholder="Enter email address" label="Email address" />*/}
-          {/*<Input {...password} type="password" placeholder="Choose a password" label="Password" />*/}
-          {/*<Input {...retypePassword} type="password" placeholder="Retype your password" label="Retype password" />*/}
-        </div>
-
-        <Button type="submit" bsStyle="primary" disabled={submitting}>
-          <Icon name="cog" animate="spin" className={submitting ? undefined : 'hidden'} /> Register
-        </Button>
-      </form>
-    );
-  }
 }
 
-// Validation constraints
-const constraints = {
-  firstName: { presence: true },
-  lastName: { presence: true },
-  email: { presence: true, email: true },
-  password: { presence: true },
-  retypePassword: { presence: true, equality: 'password' }
-};
+function handleChange(e, v){
+    console.log(e);
+    console.log(v);
+}
+
+class RegistrationFormContainer extends React.Component {
+    render() {
+        return (
+            <form role="form">
+                {/*<Alert bsStyle="info" className={error ? 'hidden' : undefined}>*/}
+                    {/*Register for an account to upload and comment on videos.*/}
+                {/*</Alert>*/}
+                {/*<Alert bsStyle="danger" className={error ? undefined : 'hidden'}>*/}
+                    {/*{error}*/}
+                {/*</Alert>*/}
+
+                <div id="register-account-fields">
+                    <Input
+                        controlId="formHorizontalFirstName"
+                        name="First Name"
+                        type="text"
+                    />
+                    <Input
+                        controlId="formHorizontalLastName"
+                        name="Last Name"
+                        type="text"
+                    />
+                    <Input
+                        controlId="formHorizontalEmail"
+                        name="Email"
+                        type="email"
+                    />
+                    <Input
+                        controlId="formHorizontalPassword"
+                        name="Password"
+                        type="password"
+                    />
+                    <Input
+                        controlId="formHorizontalRetypePassword"
+                        name="Retype Password"
+                        type="password"
+                    />
+                </div>
+                <FormGroup>
+                    <Col smOffset={2} sm={10}>
+                        <Button type="submit">
+                            {/*<Icon name="cog" animate="spin" className={submitting ? undefined : 'hidden'} />*/}
+                            Register
+                        </Button>
+                    </Col>
+                </FormGroup>
+            </form>
+        );
+    }
+}
 
 // Connect the form to the store
-const RegistrationForm = reduxForm({
-  form: 'registration',
-  fields: [ 'firstName', 'lastName', 'email', 'password', 'retypePassword' ],
-  validate: vals => validateForm(vals, constraints)
-})(RegistrationFormContainer);
+const RegistrationForm = (RegistrationFormContainer);
 
 export default RegistrationForm
