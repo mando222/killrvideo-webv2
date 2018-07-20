@@ -19,12 +19,7 @@ class Input extends React.Component {
         super(props, context);
         this.handleChange = this.handleChange.bind(this);
         this.state = {
-             value: props.value ? props.value : "",
-             controlId:props.controlId,
-             name:props.name,
-             type:props.type,
-             helpblock:props.helpblock ? props.helpblock : "",
-             handleParentChange:props.onChange,
+             value: "",
              passwordRetype:""
          }
     }
@@ -43,26 +38,28 @@ class Input extends React.Component {
         var value = event.target.value;
         switch(this.props.type) {
             case "password":
+                console.log("---------------")
+                console.log("retype password")
                 console.log(this.state.passwordRetype)
-                if (this.state.passwordRetype.length > 1 && value == this.state.passwordRetype){
-                    console.log("Passwords Match")
-                    this.props.onChange(event)
-                }else{
-                    //make msg that passwords need to match
-                    console.log("Passwords Do Not Match")
-                    return 'error';
-                }
-                break;
-            case "retype":
-                console.log(this.state.passwordRetype)
+                console.log("state value")
+                console.log(this.state.value)
+                console.log("props value")
                 console.log(this.props.value)
-                if (this.props.value.length > 1 && value == this.props.value){
-                    console.log("Passwords Match")
+                console.log(this.state)
+                if (this.state.value ==="" && this.state.value === this.state.passwordRetype) {
                     this.props.onChange(event)
                 }else{
-                    //make msg that passwords need to match
-                    console.log("Passwords Do Not Match")
-                    return 'error';
+                    if (event.target.name === "retypePassword") {
+                        this.setState({
+                            ...this.state,
+                            passwordRetype: value
+                        });
+                    } else {
+                        this.setState({
+                            ...this.state,
+                            value: value
+                        });
+                    }
                 }
                 break;
             case "text":
@@ -94,7 +91,7 @@ class Input extends React.Component {
                             <FormControl
                                 type={this.props.type}
                                 name={this.props.name}
-                                value={this.props.value}
+                                value={this.props.type == "password" ? this.state.value : this.props.value}
                                 placeholder={this.props.label}
                                 onChange={(e) => { this.handleChange(e)}}
                             />
@@ -102,27 +99,28 @@ class Input extends React.Component {
                         <HelpBlock>{this.props.helpblock}</HelpBlock>
                     </FormGroup>
                 </Row>
-                {/*{this.props.type == "password" ?*/}
-                    {/*<Row>*/}
-                        {/*<FormGroup*/}
-                            {/*controlId={this.props.controlId}*/}
-                            {/*validationState={this.getValidationState()}*/}
-                        {/*>*/}
-                            {/*<Col componentClass={ControlLabel} sm={2}>*/}
-                                {/*Retype Password*/}
-                            {/*</Col>*/}
-                            {/*<Col sm={10}>*/}
-                                {/*<FormControl*/}
-                                    {/*type="password"*/}
-                                    {/*value={this.props.passwordRetype}*/}
-                                    {/*placeholder="Retype Password"*/}
-                                    {/*onChange={(e,v) => { this.handleChange(e,v,this.props.passwordRetype,"retype")}}*/}
-                                {/*/>*/}
-                            {/*</Col>*/}
-                        {/*</FormGroup>*/}
-                    {/*</Row>*/}
-                    {/*:null*/}
-                {/*}*/}
+                {this.props.type == "password" ?
+                    <Row>
+                        <FormGroup
+                            controlId={this.props.controlId+"retype"}
+                            validationState={this.getValidationState()}
+                        >
+                            <Col componentClass={ControlLabel} sm={2}>
+                                Retype Password
+                            </Col>
+                            <Col sm={10}>
+                                <FormControl
+                                    type="password"
+                                    name="retypePassword"
+                                    value={this.state.passwordRetype}
+                                    placeholder="Retype Password"
+                                    onChange={(e) => { this.handleChange(e)}}
+                                />
+                            </Col>
+                        </FormGroup>
+                    </Row>
+                    :null
+                }
             </div>
         );
     }

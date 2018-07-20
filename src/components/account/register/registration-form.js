@@ -10,10 +10,6 @@ class RegistrationFormContainer extends React.Component {
         super(props, context);
         this.state = {
             formData:{
-                firstName:"",
-                lastName:"",
-                email:"",
-                password:"",
             },
         }
     }
@@ -64,7 +60,7 @@ class RegistrationFormContainer extends React.Component {
                     <Input
                         controlId="formHorizontalEmail"
                         name="email"
-                        label="First Name"
+                        label="Email"
                         type="email"
                         value={this.state.formData.email}
                         onChange={(v) => { this.handleChange(v)}}
