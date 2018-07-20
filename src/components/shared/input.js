@@ -20,7 +20,8 @@ class Input extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.state = {
              value: "",
-             passwordRetype:""
+            passwordRetype:"",
+            name:props.name
          }
     }
 
@@ -38,28 +39,24 @@ class Input extends React.Component {
         var value = event.target.value;
         switch(this.props.type) {
             case "password":
-                console.log("---------------")
-                console.log("retype password")
-                console.log(this.state.passwordRetype)
-                console.log("state value")
-                console.log(this.state.value)
-                console.log("props value")
-                console.log(this.props.value)
                 console.log(this.state)
-                if (this.state.value ==="" && this.state.value === this.state.passwordRetype) {
+                if (event.target.name === "retypePassword") {
+                    this.setState({
+                        ...this.state,
+                        passwordRetype: value
+                    });
+                } else {
+                    this.setState({
+                        ...this.state,
+                        value: value
+                    });
+                }
+                if (
+                    this.state.value !=="" &&
+                    (value ===this.state.value || value === this.state.passwordRetype)
+                ) {
+                    event.target.name = this.state.name
                     this.props.onChange(event)
-                }else{
-                    if (event.target.name === "retypePassword") {
-                        this.setState({
-                            ...this.state,
-                            passwordRetype: value
-                        });
-                    } else {
-                        this.setState({
-                            ...this.state,
-                            value: value
-                        });
-                    }
                 }
                 break;
             case "text":
