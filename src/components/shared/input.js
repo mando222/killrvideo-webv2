@@ -20,7 +20,7 @@ class Input extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.setValidationState = this.setValidationState.bind(this);
         this.state = {
-             value: "",
+            passwordValue: "",
             passwordRetype:"",
             name:props.name,
             error:null
@@ -50,24 +50,35 @@ class Input extends React.Component {
                 } else if (event.target.name === this.state.name){
                     this.setState({
                         ...this.state,
-                        value: value
+                        passwordValue: value
                     });
                 }else{
                     console.log("An error occurred with password validation.");
                 }
                 if (
-                    value !=="" &&
-                    (
-                        (value === this.state.value && event.target.name === "retypePassword") ||
-                        (value === this.state.passwordRetype && event.target.name === this.state.name)
+                    value !==""
+                    && (
+                        (
+                            value === this.state.passwordValue
+                            // &&
+                            // event.target.name === "retypePassword"
+                        )
+                        // ||
+                        // (
+                        //     value === this.state.passwordRetype
+                        //     &&
+                        //     event.target.name === this.state.name
+                        // )
                     )
                 ) {
                     //if the values and password retype match then submit value
+                    console.log("hit1")
                     event.target.name = this.state.name;
                     this.props.onChange(event);
                     this.setValidationState('success');
                 }else{
                     //if the values and password retype don't match then clear value
+                    console.log("hit2")
                     event.target.name = this.state.name;
                     event.target.value = "";
                     this.props.onChange(event);
@@ -83,11 +94,10 @@ class Input extends React.Component {
                 }
                 break;
             case "email":
-                function isValidEmailAddress(emailAddress) {
-                    var pattern = new RegExp(/^(("[\w-+\s]+")|([\w-+]+(?:\.[\w-+]+)*)|("[\w-+\s]+")([\w-+]+(?:\.[\w-+]+)*))(@((?:[\w-+]+\.)*\w[\w-+]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][\d]\.|1[\d]{2}\.|[\d]{1,2}\.))((25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\.){2}(25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\]?$)/i);
-                    return pattern.test(emailAddress);
-                }
-                if (!isValidEmailAddress(value)){
+                var pattern = new RegExp(/^(("[\w-+\s]+")|([\w-+]+(?:\.[\w-+]+)*)|("[\w-+\s]+")([\w-+]+(?:\.[\w-+]+)*))(@((?:[\w-+]+\.)*\w[\w-+]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][\d]\.|1[\d]{2}\.|[\d]{1,2}\.))((25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\.){2}(25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\]?$)/i);
+                if(value === ""){
+                    this.setValidationState(null);
+                } if (!pattern.test(value)){
                     this.setValidationState('warning');
                 }else {
                     this.props.onChange(event);
@@ -118,7 +128,7 @@ class Input extends React.Component {
                             <FormControl
                                 type={this.props.type}
                                 name={this.props.name}
-                                value={this.props.type == "password" ? this.state.value : this.props.value}
+                                value={this.props.type == "password" ? this.state.passwordValue : this.props.value}
                                 placeholder={this.props.label}
                                 onChange={(e) => { this.handleChange(e)}}
                             />
