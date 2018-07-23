@@ -60,15 +60,15 @@ class Input extends React.Component {
                     && (
                         (
                             value === this.state.passwordValue
-                            // &&
-                            // event.target.name === "retypePassword"
+                            &&
+                            event.target.name === "retypePassword"
                         )
-                        // ||
-                        // (
-                        //     value === this.state.passwordRetype
-                        //     &&
-                        //     event.target.name === this.state.name
-                        // )
+                        ||
+                        (
+                            value === this.state.passwordRetype
+                            &&
+                            event.target.name === this.state.name
+                        )
                     )
                 ) {
                     //if the values and password retype match then submit value
