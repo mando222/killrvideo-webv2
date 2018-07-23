@@ -58,6 +58,7 @@ class RegistrationFormContainer extends React.Component {
                     {this.state.formData.lastName && this.state.formData.lastName !== "" ? null : "Missing Last Name" + <br/>}+
                     {this.state.formData.email && this.state.formData.email !== "" ? null : "Missing Email" + <br/>}+
                     {this.state.formData.password && this.state.formData.password !== "" ? null: "Missing password or passwords don't match"}
+
                 </a>
                 <div id="register-account-fields">
                     <Input
@@ -65,6 +66,7 @@ class RegistrationFormContainer extends React.Component {
                         name="firstName"
                         label="First Name"
                         type="text"
+                        value={this.state.formData.firstName}
                         onChange={(v) => { this.handleChange(v)}}
                     />
                     <Input
@@ -72,6 +74,7 @@ class RegistrationFormContainer extends React.Component {
                         name="lastName"
                         label="Last Name"
                         type="text"
+                        value={this.state.formData.lastName}
                         onChange={(v) => { this.handleChange(v)}}
                     />
                     <Input
@@ -79,6 +82,7 @@ class RegistrationFormContainer extends React.Component {
                         name="email"
                         label="Email"
                         type="email"
+                        value={this.state.formData.email}
                         onChange={(v) => { this.handleChange(v)}}
                     />
                     <Input
@@ -86,6 +90,7 @@ class RegistrationFormContainer extends React.Component {
                         name="password"
                         label="Password"
                         type="password"
+                        value={this.state.formData.password}
                         onChange={(v) => { this.handleChange(v)}}
                     />
                 </div>

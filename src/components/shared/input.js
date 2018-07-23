@@ -20,8 +20,8 @@ class Input extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.setValidationState = this.setValidationState.bind(this);
         this.state = {
-            passwordValue: "",
-            passwordRetype:"",
+            value: "",
+            retypePassword:"",
             name:props.name,
             error:null
          }
@@ -42,56 +42,63 @@ class Input extends React.Component {
         switch(this.props.type) {
             case "password":
                 console.log(this.state);
-                if (event.target.name === "retypePassword") {
-                    this.setState({
-                        ...this.state,
-                        passwordRetype: value
-                    });
-                } else if (event.target.name === this.state.name){
-                    this.setState({
-                        ...this.state,
-                        passwordValue: value
-                    });
-                }else{
-                    console.log("An error occurred with password validation.");
-                }
-                if (
-                    value !==""
-                    && (
-                        (
-                            value === this.state.passwordValue
-                            &&
-                            event.target.name === "retypePassword"
-                        )
-                        ||
-                        (
-                            value === this.state.passwordRetype
-                            &&
-                            event.target.name === this.state.name
-                        )
-                    )
-                ) {
-                    //if the values and password retype match then submit value
+                console.log(value);
+                console.log(event.target.name);
+                if (event.target.name !== "retypePassword") {
                     console.log("hit1")
-                    event.target.name = this.state.name;
-                    this.props.onChange(event);
-                    this.setValidationState('success');
+                    this.setState({
+                        ...this.state,
+                        value: value
+                    });
                 }else{
-                    //if the values and password retype don't match then clear value
                     console.log("hit2")
-                    event.target.name = this.state.name;
-                    event.target.value = "";
-                    this.props.onChange(event);
-                    this.setValidationState('error');
+                    this.setState({
+                        ...this.state,
+                        retypePassword: value
+                    });
+                }
+                if (value !=="" &&(
+                    (value === this.state.value && event.target.name === "retypePassword")
+                    ||
+                    (value === this.state.retypePassword && event.target.name === this.state.name)
+                )){
+                    //if the values and password retype match then submit value
+                    var x = {
+                    ...event,
+                        target:{
+                            ...event.target,
+                            name:this.state.name
+                        }
+                    }
+                    this.props.onChange(x);
+                    // this.setValidationState('success');
+                    console.log("passwords match")
+                }else {
+                    // if (value ==="") {
+                    //     this.setValidationState(null);
+                    // }else {
+                    //     this.setValidationState('error');
+                    // }
+                    //if the values and password retype don't match then clear value
+                    var x = {
+                        ...event,
+                        target:{
+                            ...event.target,
+                            name:this.state.name,
+                            value:""
+                        }
+                    }
+                    this.props.onChange(x);
+                    console.log("passwords don't match")
                 }
                 break;
             case "text":
                 if (value.length < 3){
                     this.setValidationState('warning');
                 }else{
-                    this.props.onChange(event);
                     this.setValidationState('success');
                 }
+                this.props.onChange(event);
                 break;
             case "email":
                 var pattern = new RegExp(/^(("[\w-+\s]+")|([\w-+]+(?:\.[\w-+]+)*)|("[\w-+\s]+")([\w-+]+(?:\.[\w-+]+)*))(@((?:[\w-+]+\.)*\w[\w-+]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][\d]\.|1[\d]{2}\.|[\d]{1,2}\.))((25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\.){2}(25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\]?$)/i);
@@ -128,7 +135,7 @@ class Input extends React.Component {
                             <FormControl
                                 type={this.props.type}
                                 name={this.props.name}
-                                value={this.props.type == "password" ? this.state.passwordValue : this.props.value}
+                                value={this.props.type == "password" ? this.state.value : this.props.value}
                                 placeholder={this.props.label}
                                 onChange={(e) => { this.handleChange(e)}}
                             />
@@ -149,7 +156,7 @@ class Input extends React.Component {
                                 <FormControl
                                     type="password"
                                     name="retypePassword"
-                                    value={this.state.passwordRetype}
+                                    value={this.state.retypePassword}
                                     placeholder="Retype Password"
                                     onChange={(e) => { this.handleChange(e)}}
                                 />
