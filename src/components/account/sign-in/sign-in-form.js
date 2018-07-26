@@ -5,42 +5,85 @@ import { reduxForm } from 'redux-form';
 import { validateForm } from '../../../lib/validation';
 
 import Input from '../../shared/input';
-import Icon from '../../shared/icon';
 
 class SignInForm extends React.Component {
+    constructor(props, context) {
+        super(props, context);
+        this.state = {
+            showValidation:true,
+            errorText:" Please fill in all required fields. Required fields have a *",
+            formData:{
+            },
+            required:{
+                "signin-email":true,
+                "signin-password":true
+
+            }
+        }
+    }
+
+    handleSubmit(formData, required){
+        console.log(formData);
+        var passed = true;
+
+        Object.keys(required).forEach(function(key) {
+            if (required[key] === true && !formData[key]){
+                console.log("required field "+key+" is not filled in");
+                passed = false;
+            }
+        });
+        this.setState({
+            ...this.state,
+            showValidation: passed
+        });
+        if (passed === true){
+            //submit values to the graphQL DSE connection.
+        }
+    }
+
+    handleChange(event){
+        var value = event.target.value;
+        var key = event.target.name;
+        this.setState({
+            ...this.state,
+            formData: {
+                ...this.state.formData,
+                [key]: value
+            }
+        });
+    }
   render() {
-    const { fields: { email, password }, handleSubmit, submitting, error } = this.props;
-    
     return (
-      <form role="form" onSubmit={handleSubmit}>
-        <Alert bsStyle="info" className={error ? 'hidden' : undefined}>
-          If you've already got an account, sign in with your email address and password below.
-        </Alert>
-        <Alert bsStyle="danger" className={error ? undefined : 'hidden'}>{error}</Alert>
+      <form>
+        {/*<Alert bsStyle="info" className={error ? 'hidden' : undefined}>*/}
+          {/*If you've already got an account, sign in with your email address and password below.*/}
+        {/*</Alert>*/}
+        {/*<Alert bsStyle="danger" className={error ? undefined : 'hidden'}>{error}</Alert>*/}
         
         <div id="signin-fields">
-          <Input {...email} id="signin-email" type="email" placeholder="Enter email address" label="Email address" focusOnMount />
-          <Input {...password} id="signin-password" type="password" placeholder="Password" label="Password" />
+            <Input
+                controlId="signin-email"
+                name="signin-email"
+                label="Email Address"
+                type="email"
+                required={true}
+                onChange={(v) => { this.handleChange(v)}}
+            />
+            <Input
+                controlId="signin-password"
+                name="password"
+                label="Password"
+                type="password"
+                required={true}
+                onChange={(v) => { this.handleChange(v)}}
+            />
         </div>
-
-        <Button type="submit" bsStyle="primary" block disabled={submitting}>
-          <Icon name="cog" animate="spin" className={submitting ? undefined : 'hidden'} /> Sign In
+        <Button bsStyle="primary" onClick={() => {this.handleSubmit(this.state.formData, this.state.required)}}>
+            Sign In
         </Button>
       </form>
     );
   }
 }
 
-// Validation constraints
-const constraints = {
-  email: { presence: true, email: true },
-  password: { presence: true }
-};
-
-// Connect the form to the store
-export default reduxForm({
-  form: 'signIn',
-  fields: [ 'email', 'password' ],
-  touchOnBlur: false,
-  validate: vals => validateForm(vals, constraints)
-})(SignInForm);
+export default SignInForm

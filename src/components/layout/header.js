@@ -91,7 +91,7 @@ class HeaderContainer extends React.Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        <WhatIsThis showWhatIsThis={this.props.showWhatIsThis} toggleWhatIsThis={this.props.toggleWhatIsThis} />
+        <WhatIsThis showWhatIsThis={this.props.showWhatIsThis} toggleWhatIsThis={() => {this.props.toggleWhatIsThis(this.props.showWhatIsThis)}} />
         <Tour showTour={this.props.showTour} toggleTour={this.props.toggleTour} />
       </div>
     );
@@ -109,8 +109,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        toggleWhatIsThis: () => {
-            dispatch(toggleWhatIsThis())
+        toggleWhatIsThis: (current) => {
+            dispatch(toggleWhatIsThis(current))
         },
         toggleTour: () => {
             dispatch(toggleTour())

@@ -40,18 +40,13 @@ class Input extends React.Component {
         // custom form validation
         var value = event.target.value;
         switch(this.props.type) {
-            case "password":
-                console.log(this.state);
-                console.log(value);
-                console.log(event.target.name);
+            case "newPassword":
                 if (event.target.name !== "retypePassword") {
-                    console.log("hit1")
                     this.setState({
                         ...this.state,
                         value: value
                     });
                 }else{
-                    console.log("hit2")
                     this.setState({
                         ...this.state,
                         retypePassword: value
@@ -92,6 +87,14 @@ class Input extends React.Component {
                     console.log("passwords don't match")
                 }
                 break;
+            case "password":
+                if (value.length < 3){
+                    this.setValidationState('warning');
+                }else{
+                    this.setValidationState('success');
+                }
+                this.props.onChange(event);
+                break;
             case "text":
                 if (value.length < 3){
                     this.setValidationState('warning');
@@ -129,13 +132,14 @@ class Input extends React.Component {
                         validationState={this.state.error}
                     >
                         <Col componentClass={ControlLabel} sm={2}>
-                            {this.props.label}
+                            {this.props.label + (this.props.required ? "*" : "")}
                         </Col>
                         <Col sm={10}>
                             <FormControl
-                                type={this.props.type}
+                                type={this.props.type == "newPassword" ? "password" : this.props.type}
                                 name={this.props.name}
-                                value={this.props.type == "password" ? this.state.value : this.props.value}
+                                required={this.props.required}
+                                value={this.props.type == "newPassword" ? this.state.value : this.props.value}
                                 placeholder={this.props.label}
                                 onChange={(e) => { this.handleChange(e)}}
                             />
@@ -143,14 +147,14 @@ class Input extends React.Component {
                         <HelpBlock>{this.props.helpblock}</HelpBlock>
                     </FormGroup>
                 </Row>
-                {this.props.type == "password" ?
+                {this.props.type == "newPassword" ?
                     <Row>
                         <FormGroup
                             controlId={this.props.controlId+"retype"}
                             validationState={this.state.error}
                         >
                             <Col componentClass={ControlLabel} sm={2}>
-                                Retype Password
+                                Retype Password*
                             </Col>
                             <Col sm={10}>
                                 <FormControl

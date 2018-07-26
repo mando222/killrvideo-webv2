@@ -1,35 +1,42 @@
 import React from 'react';
-import { Row, Col, Button, Alert, FormGroup, FormControl,ControlLabel} from 'react-bootstrap';
-import { reduxForm } from 'redux-form';
-import { validateForm } from '../../../lib/validation';
-import Icon from '../../shared/icon';
+import { Col, Button, Alert, FormGroup} from 'react-bootstrap';
 import Input from '../../shared/Input';
+import Icon from '../../shared/icon';
 
 class RegistrationFormContainer extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            requirementsFilled:true,
+            showValidation:true,
+            errorText:" Please fill in all required fields. Required fields have a *",
             formData:{
             },
+            required:{
+                firstName:true,
+                lastName:true,
+                email:true,
+                password:true
+            }
         }
     }
 
-    handleSubmit(formData){
-        if(formData.email && formData.firstName && formData.lastName && formData.password){
-            console.log("success")
-            this.setState({
-                ...this.state,
-                requirementsFilled: false
-            });
-        }else{
-            console.log("failure")
-            this.setState({
-                ...this.state,
-                requirementsFilled: true
-            });
+    handleSubmit(formData, required){
+        console.log(formData);
+        var passed = true;
+
+        Object.keys(required).forEach(function(key) {
+            if (required[key] === true && !formData[key]){
+                console.log("required field "+key+" is not filled in");
+                passed = false;
+            }
+        });
+        this.setState({
+            ...this.state,
+            showValidation: passed
+        });
+        if (passed === true){
+            //submit values to the graphQL DSE connection.
         }
-        console.log(formData)
     }
 
     handleChange(event){
@@ -46,26 +53,20 @@ class RegistrationFormContainer extends React.Component {
 
     render() {
         return (
-            <form role="form" onSubmit={this.handleSubmit}>
+            <form>
                 {/*<Alert bsStyle="info" className={error ? 'hidden' : undefined}>*/}
                     {/*Register for an account to upload and comment on videos.*/}
                 {/*</Alert>*/}
                 {/*<Alert bsStyle="danger" className={error ? undefined : 'hidden'}>*/}
                     {/*{error}*/}
                 {/*</Alert>*/}
-                <a hidden={this.state.requirementsFilled}>
-                    {this.state.formData.firstName && this.state.formData.firstName !== "" ? null : "Missing First Name" + <br/>}+
-                    {this.state.formData.lastName && this.state.formData.lastName !== "" ? null : "Missing Last Name" + <br/>}+
-                    {this.state.formData.email && this.state.formData.email !== "" ? null : "Missing Email" + <br/>}+
-                    {this.state.formData.password && this.state.formData.password !== "" ? null: "Missing password or passwords don't match"}
-
-                </a>
                 <div id="register-account-fields">
                     <Input
                         controlId="formHorizontalFirstName"
                         name="firstName"
                         label="First Name"
                         type="text"
+                        required={true}
                         value={this.state.formData.firstName}
                         onChange={(v) => { this.handleChange(v)}}
                     />
@@ -74,6 +75,7 @@ class RegistrationFormContainer extends React.Component {
                         name="lastName"
                         label="Last Name"
                         type="text"
+                        required={true}
                         value={this.state.formData.lastName}
                         onChange={(v) => { this.handleChange(v)}}
                     />
@@ -82,6 +84,7 @@ class RegistrationFormContainer extends React.Component {
                         name="email"
                         label="Email"
                         type="email"
+                        required={true}
                         value={this.state.formData.email}
                         onChange={(v) => { this.handleChange(v)}}
                     />
@@ -89,17 +92,19 @@ class RegistrationFormContainer extends React.Component {
                         controlId="formHorizontalPassword"
                         name="password"
                         label="Password"
-                        type="password"
-                        value={this.state.formData.password}
+                        type="newPassword"
+                        required={true}
                         onChange={(v) => { this.handleChange(v)}}
                     />
                 </div>
                 <FormGroup>
                     <Col smOffset={2} sm={10}>
-                        <Button onClick={() => {this.handleSubmit(this.state.formData)}}>
-                            {/*<Icon name="cog" animate="spin" className={submitting ? undefined : 'hidden'} />*/}
+                        <Button bsStyle="primary"  onClick={() => {this.handleSubmit(this.state.formData, this.state.required)}}>
                             Register
                         </Button>
+                        <a hidden={this.state.showValidation}>
+                            {this.state.errorText}
+                        </a>
                     </Col>
                 </FormGroup>
             </form>

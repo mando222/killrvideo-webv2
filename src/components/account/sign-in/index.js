@@ -3,20 +3,9 @@ import { connect } from 'react-redux';
 
 import { Row, Col, Panel, Button } from 'react-bootstrap';
 import SignInForm from './sign-in-form';
-import { login } from '../../../actions/UserActions';
+import {changeScreen} from '../../../actions/NavActions'
 
 class SignInContainer extends React.Component {
-  componentWillReceiveProps(nextProps) {
-    // Redirect once logged in
-    if (this.props.isLoggedIn !== nextProps.isLoggedIn && nextProps.isLoggedIn === true) {
-      const { location: { state } } = this.props;
-      if (state && state.redirectAfterLogin) {
-        this.props.push(state.redirectAfterLogin);
-      } else {
-        this.props.push('/');
-      }
-    }
-  }
   
   render() {
     return (
@@ -24,12 +13,12 @@ class SignInContainer extends React.Component {
         <Row>
           <Col md={4} mdOffset={4}>
             <Panel header="Sign In" id="signin-account">
-              <SignInForm onSubmit={vals => this.props.login(vals.email, vals.password)} />
+              <SignInForm />
               <div className="section-divider text-center muted">
                 <span>New to KillrVideo?</span>
               </div>
               
-              <Button bsStyle="default" block onClick={() => this.redirectToRegister()}>
+              <Button bsStyle="default" block onClick={() => this.changeScreen("Register")}>
                 Register for an Account
               </Button>
             </Panel>
@@ -41,15 +30,7 @@ class SignInContainer extends React.Component {
 }
 
 function mapStateToProps(state) {
-  // let {
-  //   authentication: {
-  //     currentUser: { isLoggedIn }
-  //   }
-  // } = state;
-  //
-  // return { isLoggedIn };
     return {
-        currentUser: state.UserReducer.currentUser,
     };
 }
 
@@ -57,19 +38,16 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        redirectToRegister() {
-
+        changeScreen: (page) => {
+            dispatch(changeScreen(page))
         },
-        login() {
-
-        }
-
     }
 }
+
 
 const SignIn = connect(
     mapStateToProps,
     mapDispatchToProps
 )(SignInContainer)
 
-export default SignIn;
+export default SignIn

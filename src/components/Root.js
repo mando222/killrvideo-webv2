@@ -3,6 +3,7 @@ import Header from './layout/header';
 import Footer from './layout/footer';
 import { connect } from 'react-redux';
 import Register from './account/register/index'
+import SignIn from './account/sign-in/index'
 import Home from './home'
 import Tour from './shared/tour'
 
@@ -16,7 +17,7 @@ class RootContainer extends React.Component{
                             "Home": <Home/>,
                             "Register": <Register/>,
                             "Tour": <Tour/>,
-                            // "SignIn": <SignIn/>
+                            "SignIn": <SignIn/>
                         }[this.props.page]}
                         <div id="push-footer" className="hidden-xs">
                         </div>

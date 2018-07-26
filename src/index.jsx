@@ -24,7 +24,7 @@ var initialState = {
 
     },
     MiscReducer:{
-        showWhatIsThis: true,
+        showWhatIsThis: false,
         showTour: false,
         searchSuggestions: null,
     },

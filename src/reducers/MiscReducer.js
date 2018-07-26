@@ -12,7 +12,7 @@ const MiscReducer = (state = '', action) => {
         case TOGGLE_WHAT_IS_THIS:
             return {
                 ...state,
-                showWhatIsThis: action.open,
+                showWhatIsThis:!state.showWhatIsThis
             }
         case SHOW_TOUR:
             return {
