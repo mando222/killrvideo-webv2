@@ -20,23 +20,22 @@ class Home extends React.Component {
       recentVideosActions, recommendedVideosActions, myVideosActions
     } = this.props;
 
-    let recommendedVideosList, userVideosList;
-    if (isLoggedIn === true) {
-      recommendedVideosList = <VideoPreviewList title="Recommended for You" {...recommendedVideos} {...recommendedVideosActions} />;
-      userVideosList = <VideoPreviewList title="My Videos" {...myVideos} {...myVideosActions} />;
-    }
-
     return (
       <div id="video-lists" className="body-content container">
         <Row id="recent-videos">
-          {/*<VideoPreviewList title="Recent Videos" {...recentVideos} {...recentVideosActions} />*/}
+          <VideoPreviewList title="Recent Videos" {...recentVideos} {...recentVideosActions} />
         </Row>
-        <Row id="recommended-videos">
-          {recommendedVideosList}
-        </Row>
-        <Row id="user-videos">
-          {userVideosList}
-        </Row>
+          {isLoggedIn ?
+              <div>
+                <Row id="recommended-videos">
+                  <VideoPreviewList title="Recommended for You" {...recommendedVideos} {...recommendedVideosActions} />
+                </Row>
+                <Row id="user-videos">
+                    <VideoPreviewList title="My Videos" {...myVideos} {...myVideosActions} />
+                </Row>
+              </div>:
+              null
+              }
       </div>
     );
   }
