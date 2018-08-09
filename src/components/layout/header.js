@@ -7,7 +7,7 @@ import UserProfileImage from '../users/user-profile-image';
 import WhatIsThis from './what-is-this';
 import SearchBox from './search-box';
 import Tour from '../shared/tour';
-import {toggleWhatIsThis, toggleTour} from '../../actions/MiscActions'
+import {toggleWhatIsThis, toggleTour,testButton} from '../../actions/MiscActions'
 import {changeScreen} from '../../actions/NavActions'
 
 class HeaderContainer extends React.Component {
@@ -42,9 +42,9 @@ class HeaderContainer extends React.Component {
             <Icon name="video-camera" fixedWidth /> Add a Video
           </MenuItem>
           <MenuItem divider />
-          <MenuItem eventKey={4.3} onSelect={e => this.props.changeScreen('SignOut')}>
-            <Icon name="sign-out" fixedWidth /> Sign Out
-          </MenuItem>
+            <MenuItem eventKey={4.3} onSelect={e => this.props.changeScreen('SignOut')}>
+                <Icon name="sign-out" fixedWidth /> Sign Out
+            </MenuItem>
         </NavDropdown>
 
       );
@@ -85,6 +85,9 @@ class HeaderContainer extends React.Component {
               <NavItem eventKey={1} href="#" onSelect={e => this.props.toggleWhatIsThis()} className={this.props.showWhatIsThis ? 'dropup' : ''}>
                 What is this? <span className="caret"></span>
               </NavItem>
+                <NavItem eventKey={1} href="#" onSelect={e => this.props.testButton()}>
+                    test
+                </NavItem>
               {signIn}
               {register}
               {loggedInMenu}
@@ -137,6 +140,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         changeScreen: (page) => {
             dispatch(changeScreen(page))
         },
+        testButton:()=>{
+            dispatch(testButton())
+        }
     }
 }
 
