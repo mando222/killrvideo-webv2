@@ -23,16 +23,28 @@ export const toggleTour = (toggleTour) => {
 
 
 export function testButton() {
-        client.query({
-            query: gql`
+    client.query({
+        query: gql`
                 {
-                  books {
-                    title
-                    author
-                  }
+                    books {
+                        title
+                        author
+                    }
                 }
             `
-        }).then(result => console.log(result));
+    }).then(result => console.log(result));
+
+}
+export function testButton2() {
+    client.query({
+        query: gql`
+            {
+                vidoes {
+                    title
+                }
+            }
+            `
+    }).then(result => console.log(result));
 
 }
 

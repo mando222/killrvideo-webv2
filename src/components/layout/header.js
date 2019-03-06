@@ -7,7 +7,7 @@ import UserProfileImage from '../users/user-profile-image';
 import WhatIsThis from './what-is-this';
 import SearchBox from './search-box';
 import Tour from '../shared/tour';
-import {toggleWhatIsThis, toggleTour,testButton} from '../../actions/MiscActions'
+import {toggleWhatIsThis, toggleTour,testButton, testButton2} from '../../actions/MiscActions'
 import {changeScreen} from '../../actions/NavActions'
 
 class HeaderContainer extends React.Component {
@@ -88,6 +88,9 @@ class HeaderContainer extends React.Component {
                 <NavItem eventKey={1} href="#" onSelect={e => this.props.testButton()}>
                     test
                 </NavItem>
+                <NavItem eventKey={1} href="#" onSelect={e => this.props.testButton2()}>
+                    test2
+                </NavItem>
               {signIn}
               {register}
               {loggedInMenu}
@@ -142,6 +145,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         testButton:()=>{
             dispatch(testButton())
+        },
+        testButton2:()=>{
+            dispatch(testButton2())
         }
     }
 }
